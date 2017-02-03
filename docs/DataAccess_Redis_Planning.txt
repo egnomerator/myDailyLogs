@@ -1,0 +1,57 @@
+
+Log Entry Persistence Plan:
+
+Use an ordered set with 64-bit timestamp keys and string log entry values
+-the strings will have the user-readable date and time followed by the log message
+
+var epoch = new DateTime(1970, 1, 1);
+(long)(date - epoch).TotalMilliseconds						<------	to get unix-like timestamp
+`																	long makes it 2038-safe
+
+ordered set		key: 64-bit timestamp | value log entry including timestamp
+-------------							-include milliseconds (Redis set type is distinct)
+score			value					-milliseconds not in UI
+
+unixTimeStamp	"[	date	time	]log entry text"
+
+4124685400		"2017/02/02 01:10:24 did this and that"
+4124685401		"2017/02/02 06:15:45 did this and that"
+4124685402		"2017/02/02 01:10:24 did this and that"
+4124685410		"2017/02/03 01:10:24 did this and that"
+
+____________________________________________________________
+
+
+Redis Notes
+________________
+
+
+
+5 data types:
+1) strings		-- set a string value to a key
+2) lists		-- ordered lists; can add to either beginning or end
+3) sets			-- only allow for a single instance of any value (distinct values)
+4) hashes		-- allow multiple fields to contain multiple values
+5) sorted sets	-- sets sorted by a value given when items are added
+
+____________________________________________________________
+
+ServiceStack.Redis Client
+
+Interfaces
+
+
+ICacheClient:
+-for using Redis as a cache
+
+IRedisNativeClient:
+-methods directly map to native Redis commands
+-low-level; methods are sent as byte[]'s
+-complete control of how app communicates with Redis
+
+IRedisClient:
+-methods map to Redis operations (not to direct commnads)
+-data sent as strings (responsible for converting commands to strings)
+
+IRedisTypedClient:
+-serializes/deserializes objects

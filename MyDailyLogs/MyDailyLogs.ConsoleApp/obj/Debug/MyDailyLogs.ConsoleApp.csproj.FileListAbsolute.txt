@@ -1,0 +1,10 @@
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.exe.config
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.exe
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.csprojResolveAssemblyReference.cache
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.exe
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Services.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Services.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.pdb

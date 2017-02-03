@@ -1,0 +1,9 @@
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Services.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Services.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Core.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.ViewModels.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Core.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.ViewModels.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.csprojResolveAssemblyReference.cache
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.pdb

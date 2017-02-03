@@ -1,0 +1,14 @@
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.DataAccess.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.DataAccess.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Common.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Interfaces.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Redis.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Text.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Common.xml
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Redis.xml
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Text.xml
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.Core.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.Core.pdb

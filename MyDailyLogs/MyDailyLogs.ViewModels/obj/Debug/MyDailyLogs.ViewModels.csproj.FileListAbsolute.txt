@@ -1,0 +1,5 @@
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.pdb
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.csprojResolveAssemblyReference.cache
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.dll
+c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.pdb
