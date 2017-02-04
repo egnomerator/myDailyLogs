@@ -18,6 +18,11 @@ namespace MyDailyLogs.Core.Utilities
             return Constants.Epoch.AddMilliseconds(mSinceEpoch);
         }
 
+        public static string FormatForDisplay(this DateTime dt)
+        {
+            return $"{dt:MM/dd/yyyy hh:mm:ss zzz}";
+        }
+
         #endregion
 
         public static byte[] ToEncodedUtf8ByteArray(this string str)

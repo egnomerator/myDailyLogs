@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using MyDailyLogs.Core.Configuration;
 using MyDailyLogs.Core.Interfaces;
 using MyDailyLogs.Core.Utilities;
 using MyDailyLogs.DataAccess;
@@ -73,7 +74,7 @@ namespace MyDailyLogs.Services
                 // -it it stored in Redis this way to satisfy the Redis Type Sorted Set requirement that any item in the set be distinct
                 var entryText = Encoding.UTF8.GetString(logEntries[i]).Substring(13);
 
-                vm.EntryDateTime = $"{currentEntryTimeStamp:G}";
+                vm.EntryDateTime = currentEntryTimeStamp.FormatForDisplay();
                 vm.EntryNumber = entryNumber;
                 vm.EntryText = entryText;
 
