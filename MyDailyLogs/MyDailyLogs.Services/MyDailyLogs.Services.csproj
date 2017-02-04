@@ -50,6 +50,10 @@
       <Project>{2853c1a7-2b7e-4d4a-946b-f22b3363ff49}</Project>
       <Name>MyDailyLogs.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyDailyLogs.DataAccess\MyDailyLogs.DataAccess.csproj">
+      <Project>{0c557c1e-dbf9-4a60-a38d-ea28c767154d}</Project>
+      <Name>MyDailyLogs.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyDailyLogs.ViewModels\MyDailyLogs.ViewModels.csproj">
       <Project>{283400e4-f44e-4231-ae99-8e4d14de0ec7}</Project>
       <Name>MyDailyLogs.ViewModels</Name>

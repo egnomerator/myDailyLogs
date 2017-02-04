@@ -2,7 +2,7 @@
 Log Entry Persistence Plan:
 
 Use an ordered set with 64-bit timestamp keys and string log entry values
--the strings will have the user-readable date and time followed by the log message
+-the strings will have the timestamp followed by the log message
 
 var epoch = new DateTime(1970, 1, 1);
 (long)(date - epoch).TotalMilliseconds						<------	to get unix-like timestamp
@@ -12,13 +12,15 @@ ordered set		key: 64-bit timestamp | value log entry including timestamp
 -------------							-include milliseconds (Redis set type is distinct)
 score			value					-milliseconds not in UI
 
-unixTimeStamp	"[	date	time	]log entry text"
+unixTimeStamp	"[	unixTimeStamp	]log entry text"
 
-4124685400		"2017/02/02 01:10:24 did this and that"
-4124685401		"2017/02/02 06:15:45 did this and that"
-4124685402		"2017/02/02 01:10:24 did this and that"
-4124685410		"2017/02/03 01:10:24 did this and that"
+4124685400123	"4124685400123did this and that"
+4124685401123	"4124685400123did this and that"
 
+1486183346246
+
+"zrangebyscore" command will get all log entries within the min/max range
+-the 64-bit timestamp will be the score
 ____________________________________________________________
 
 

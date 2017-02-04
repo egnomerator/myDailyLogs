@@ -8,3 +8,24 @@ c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Conso
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.dll
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Services.pdb
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.exe.config
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.exe
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.exe
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ConsoleApp.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Services.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Core.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Services.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.Core.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.ViewModels.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\obj\Debug\MyDailyLogs.ConsoleApp.csprojResolveAssemblyReference.cache
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.DataAccess.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Interfaces.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Redis.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Text.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Common.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\MyDailyLogs.DataAccess.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Redis.xml
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Text.xml
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ConsoleApp\bin\Debug\ServiceStack.Common.xml

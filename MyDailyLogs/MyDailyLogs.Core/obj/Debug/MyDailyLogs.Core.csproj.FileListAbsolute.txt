@@ -3,3 +3,8 @@ c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Core\
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.csprojResolveAssemblyReference.cache
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.dll
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.csprojResolveAssemblyReference.cache
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb

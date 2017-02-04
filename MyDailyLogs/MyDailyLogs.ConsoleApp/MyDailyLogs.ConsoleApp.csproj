@@ -50,9 +50,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyDailyLogs.Core\MyDailyLogs.Core.csproj">
+      <Project>{2853c1a7-2b7e-4d4a-946b-f22b3363ff49}</Project>
+      <Name>MyDailyLogs.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyDailyLogs.Services\MyDailyLogs.Services.csproj">
       <Project>{16ab8044-8bec-44aa-91da-2df50345d2ee}</Project>
       <Name>MyDailyLogs.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDailyLogs.ViewModels\MyDailyLogs.ViewModels.csproj">
+      <Project>{283400e4-f44e-4231-ae99-8e4d14de0ec7}</Project>
+      <Name>MyDailyLogs.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

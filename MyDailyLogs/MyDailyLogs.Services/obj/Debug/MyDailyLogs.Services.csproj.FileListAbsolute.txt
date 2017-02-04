@@ -7,3 +7,21 @@ c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Servi
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.csprojResolveAssemblyReference.cache
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.dll
 c:\users\dan\documents\visual studio 2015\Projects\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Services.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Services.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Core.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.ViewModels.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.Core.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.ViewModels.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.csprojResolveAssemblyReference.cache
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\obj\Debug\MyDailyLogs.Services.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.DataAccess.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Interfaces.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Redis.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Text.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Common.dll
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\MyDailyLogs.DataAccess.pdb
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Redis.xml
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Text.xml
+H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Services\bin\Debug\ServiceStack.Common.xml
