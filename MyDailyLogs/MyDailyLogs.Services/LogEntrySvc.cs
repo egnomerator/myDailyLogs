@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using MyDailyLogs.Core.Interfaces;
@@ -51,52 +52,45 @@ namespace MyDailyLogs.Services
         {
             var logEntryVms = new List<LogEntryViewModel>();
             if (!logEntries.Any()) return logEntryVms;
+            if(logEntries.Length < 2) throw new Exception("Exactly 1 result; should be 2 or more (or zero, if empty db).");
 
-            var prevEntryTimeStamp = ((long)logEntries[1][0]).FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
+            var ts = GetTimeStampFromByteArray(logEntries[1]);
+            var prevEntryTimeStamp = ts.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
             ushort entryNumber = 0;
 
-            for (var i = 0; i < logEntries.Length; i++)
+            for (var i = 0; i < logEntries.Length; i+= 2)
             {
                 entryNumber++;
                 var vm = new LogEntryViewModel();
 
+                var currentTs = GetTimeStampFromByteArray(logEntries[i + 1]);
+                var currentEntryTimeStamp = currentTs.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
+
                 // If this log entry is the first of a new day in the sequence, we reset the entry number
-                var entryDate = ((long)logEntries[0][i]).FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
-                if (entryDate.Day > prevEntryTimeStamp.Day) entryNumber = 1;
+                if (currentEntryTimeStamp.Day > prevEntryTimeStamp.Day) entryNumber = 1;
 
                 // Log entry text is stored in Redis with the timestamp prepended to it; so here getting only the text after the timestamp
                 // -it it stored in Redis this way to satisfy the Redis Type Sorted Set requirement that any item in the set be distinct
                 var entryText = Encoding.UTF8.GetString(logEntries[i]).Substring(13);
 
-                vm.EntryDateTime = $"{entryDate:G}";
+                vm.EntryDateTime = $"{currentEntryTimeStamp:G}";
                 vm.EntryNumber = entryNumber;
                 vm.EntryText = entryText;
 
                 logEntryVms.Add(vm);
             }
 
-            //return logEntries.Select(l =>
-            //{
-            //    entryNumber++;
-            //    var vm = new LogEntryViewModel();
-
-            //    // If this log entry is the first of a new day in the sequence, we reset the entry number
-            //    var entryDate = l.Item1.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
-            //    if (entryDate.Day > prevEntryTimeStamp.Day) entryNumber = 1;
-
-            //    // Log entry text is stored in Redis with the timestamp prepended to it; so here getting only the text after the timestamp
-            //    // -it it stored in Redis this way to satisfy the Redis Type Sorted Set requirement that any item in the set be distinct
-            //    var entryText = l.Item2.Substring(13);
-
-            //    vm.EntryDateTime = $"{entryDate:G}";
-            //    vm.EntryNumber = entryNumber;
-            //    vm.EntryText = entryText;
-
-            //    return vm;
-
-            //}).ToList();
-
             return logEntryVms;
+        }
+
+        private static long GetTimeStampFromByteArray(byte[] bArr)
+        {
+            long ts;
+            var canParseTs = long.TryParse(Encoding.UTF8.GetString(bArr), NumberStyles.Any, CultureInfo.InvariantCulture, out ts);
+            // I want this error to happen if this is an issue.
+            if (!canParseTs) ts = long.Parse(Encoding.UTF8.GetString(bArr));
+
+            return ts;
         }
     }
 }
