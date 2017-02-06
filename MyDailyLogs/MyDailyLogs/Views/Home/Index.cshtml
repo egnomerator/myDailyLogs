@@ -67,14 +67,12 @@
             <div class="@leTextClass @lePartClass">@l.EntryText</div>
         </div>
     }
-    
+
     <div class="@logEntryClass @newLogEntryClass">
-        <div class="@leDateClass @lePartClass">     ...</div>
+        <div class="@leDateClass @lePartClass">        ...</div>
         <div class="@leNumbClass @lePartClass"> @(lastLeNumb + 1) </div>
-        <div class="@leTextClass @lePartClass">
-            _
-            <input id="@newLogEntryTextInputId" type="text" name="@newLogEntryTextInputName" autofocus/>
-        </div>
+        <input id="@newLogEntryTextInputId" class="@leTextClass @lePartClass" type="text" name="@newLogEntryTextInputName" autofocus placeholder="Type a new log entry and hit enter to save it."/>
+
     </div>
 
 </div>
@@ -83,10 +81,10 @@
 {
     <script type="text/javascript">
 
-        $(document)
-        .ready(function() {
-                ScrollToFocusLine();
-            });
+        //$(document)
+        //.ready(function() {
+        //        SaveNewLogEntry();
+        //    });
 
     </script>
 }
@@ -95,6 +93,14 @@
 {
     <style type="text/css">
         
+        #@newLogEntryTextInputId{
+            border: none;
+            outline: none;
+            width: 930px;
+            max-width: 930px;
+
+        }
+
         .@leDayDateClass{
             font-size: xx-large;
             background: lightgray;

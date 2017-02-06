@@ -20,8 +20,8 @@ namespace MyDailyLogs.Core.Utilities
 
         public static string FormatForDisplay(this DateTime dt)
         {
-            //return $"{dt:MM/dd/yyyy hh:mm:ss zzz}";
-            return $"{dt:MM/dd/yyyy hh:mm:ss}";
+            //return $"{dt:MM/dd/yyyy hh:mm:ss tt zzz}";
+            return $"{dt:MM/dd/yyyy hh:mm:ss tt}";
         }
 
         #endregion
