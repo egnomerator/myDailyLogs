@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using MyDailyLogs.DataAccess.Configuration;
 using MyDailyLogs.Core.Utilities;
@@ -13,7 +12,7 @@ namespace MyDailyLogs.DataAccess.Repositories
         {
             try
             {
-                var entryTextEncodedByteArray = logEntryText.ToEncodedUtf8ByteArray();
+                var entryTextEncodedByteArray = logEntryText.ToUtf8EncodedByteArray();
 
                 using (client)
                 {
@@ -50,36 +49,5 @@ namespace MyDailyLogs.DataAccess.Repositories
 
             return logEntries;
         }
-
-
-        #region Examples COMMENTED OUT
-
-        //public static void RunRedisNativeClientExampleTestHelloWorld()
-        //{
-        //    const string redisUrnMsg1 = "urn:messages:1";
-
-        //    using (IRedisNativeClient client = new RedisClient())
-        //    {
-        //        client.Set(redisUrnMsg1, Encoding.UTF8.GetBytes("Hello World!"));
-        //    }
-
-        //    using (IRedisNativeClient client = new RedisClient())
-        //    {
-        //        var result = Encoding.UTF8.GetString(client.Get(redisUrnMsg1));
-        //        Console.WriteLine($"Message: {result}");
-        //    }
-
-        //    Console.ReadLine();
-        //}
-
-        //public static void RunRedisClientExample()
-        //{
-        //    using (IRedisClient client = new RedisClient())
-        //    {
-        //        var customerNames = client.Lists["urn:customernames"];
-        //    }
-        //}
-
-        #endregion
     }
 }

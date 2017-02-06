@@ -1,7 +1,127 @@
-﻿@{
+﻿@using System.Globalization
+@using MyDailyLogs.ViewModels;
+@model List<LogEntryViewModel>
+
+@{
     ViewBag.Title = "Home Page";
+
+    var logEntries = Model;
+
+    var origFirstLoadedLogEntryDateTime = logEntries.Any() ? DateTime.Parse(logEntries.First().EntryDateTime) : new DateTime();
+
+    // arbitrary choice based on my expectation of never entring logs in the tripple+ digits in a single day
+    //  -if i were to design this for other users i'd probably implement this differently
+    const int maxNumbDivDigitWidth = 2;
+    const string leDayDateClass = "leDayDateClass";
+    const string logEntryClass = "logEntryClass";
+    const string lePartClass = "lePartClass";
+    const string leNumbClass = "leNumbClass";
+    const string leDateClass = "leDateClass";
+    const string leTextClass = "leTextClass";
+
+    const string focusLineClass = "focusLineClass";
+
+    const string newLogEntryClass = "newLogEntryClass";
+    const string newLogEntryTextInputId = "newLogEntryTextInputId01";
+    const string newLogEntryTextInputName = "newLogEntryTextInputName01";
 }
 
-<div>
-    Yo sir.
+<div style="padding: 0px 5px 5px 5px;">
+
+    @{
+        var prevLogEntryDateTime = DateTime.MinValue;
+        var leCount = 0;
+        var lastLeNumb = 0;
+    }
+    @foreach(var l in logEntries)
+    {
+        leCount++;
+        var leInFocus = string.Empty;
+        var lastLoadedLogEntry = leCount == logEntries.Count;
+        if (lastLoadedLogEntry)
+        {
+            leInFocus = focusLineClass;
+            lastLeNumb = l.EntryNumber;
+        }
+        var currentLogEntryDateTime = DateTime.Parse(l.EntryDateTime);
+        if (currentLogEntryDateTime.Day > prevLogEntryDateTime.Day)
+        {
+            <div class="@leDayDateClass">@l.EntryDateTime.Substring(0,10)</div>
+            prevLogEntryDateTime = currentLogEntryDateTime;
+        }
+
+        var numb = l.EntryNumber;
+        var numbStr = numb.ToString(CultureInfo.InvariantCulture);
+        var numbStrLength = numbStr.Length;
+        var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
+        var leNumbStr = string.Empty;
+        for (var d = 0; d < digitDiff; d++)
+        {
+            leNumbStr += " ";
+        }
+        leNumbStr += numbStr + " ";
+
+        <div class="@logEntryClass @leInFocus">
+            <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div>
+            <div class="@leNumbClass @lePartClass">@leNumbStr</div>
+            <div class="@leTextClass @lePartClass">@l.EntryText</div>
+        </div>
+    }
+    
+    <div class="@logEntryClass @newLogEntryClass">
+        <div class="@leDateClass @lePartClass">     ...</div>
+        <div class="@leNumbClass @lePartClass"> @(lastLeNumb + 1) </div>
+        <div class="@leTextClass @lePartClass">
+            _
+            <input id="@newLogEntryTextInputId" type="text" name="@newLogEntryTextInputName" autofocus/>
+        </div>
+    </div>
+
 </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document)
+        .ready(function() {
+                ScrollToFocusLine();
+            });
+
+    </script>
+}
+
+@section styles
+{
+    <style type="text/css">
+        
+        .@leDayDateClass{
+            font-size: xx-large;
+            background: lightgray;
+            padding-left: 5px;
+            border-top: 5px solid lightgray;
+            border-bottom: 5px solid lightgray;
+            margin-bottom: -1px;
+        }
+        .@logEntryClass {
+            line-height: 0.9em;
+            font-size: x-large;
+            border-bottom: 1px solid #222222;
+        }
+        .@lePartClass{
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+        }
+        .@leDateClass{
+
+        }
+        .@leNumbClass{
+            background: lightgray;
+        }
+        .@leTextClass{ 
+            
+        }
+
+    </style>
+}

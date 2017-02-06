@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using MyDailyLogs.Core.Interfaces;
 using MyDailyLogs.DataAccess.Repositories;
 using ServiceStack.Redis;

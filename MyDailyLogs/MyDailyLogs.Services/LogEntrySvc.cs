@@ -21,17 +21,19 @@ namespace MyDailyLogs.Services
             _logEntryPersistence = new StorageDude();
         }
 
+        /// <paramref name="timeStamp"/> expected to be milliseconds UTC since epoch
         public void SaveLogEntry(long timeStamp, string logEntryText)
         {
-            var utcNow = timeStamp.FromMillisecondsSinceEpochToCurrentDateTimeUtc();
-            var localNow = utcNow.ToLocalTime();
             _logEntryPersistence.SaveLogEntry(timeStamp,$"{timeStamp}{logEntryText}");
         }
 
-        public List<LogEntryViewModel> GetLogEntries(Tuple<long,long> dateRange)
+        public List<LogEntryViewModel> GetLogEntries(Tuple<DateTime,DateTime> dateRange)
         {
-            var result = _logEntryPersistence.GetLogEntries(dateRange);
-            return ConverLogEntryQueryByteArrayResultToLogEntryVms(result);
+            var dateRangeLongs = new Tuple<long, long>
+                (dateRange.Item1.ToUniversalTime().ToMillisecondsSinceEpoch(),
+                 dateRange.Item2.ToUniversalTime().ToMillisecondsSinceEpoch());
+            var result = _logEntryPersistence.GetLogEntries(dateRangeLongs);
+            return ConvertLogEntryQueryByteArrayResultToLogEntryVms(result);
         }
 
         public List<LogEntryViewModel> GetPrevLogEntriesFiftyMax(DateTime firstSeenEntry)
@@ -49,7 +51,7 @@ namespace MyDailyLogs.Services
             throw new NotImplementedException();
         }
 
-        private static List<LogEntryViewModel> ConverLogEntryQueryByteArrayResultToLogEntryVms(byte[][] logEntries)
+        private static List<LogEntryViewModel> ConvertLogEntryQueryByteArrayResultToLogEntryVms(byte[][] logEntries)
         {
             var logEntryVms = new List<LogEntryViewModel>();
             if (!logEntries.Any()) return logEntryVms;
@@ -68,7 +70,10 @@ namespace MyDailyLogs.Services
                 var currentEntryTimeStamp = currentTs.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
 
                 // If this log entry is the first of a new day in the sequence, we reset the entry number
-                if (currentEntryTimeStamp.Day > prevEntryTimeStamp.Day) entryNumber = 1;
+                if (currentEntryTimeStamp.Day > prevEntryTimeStamp.Day) {
+                    entryNumber = 1;
+                    prevEntryTimeStamp = currentEntryTimeStamp;
+                }
 
                 // Log entry text is stored in Redis with the timestamp prepended to it; so here getting only the text after the timestamp
                 // -it it stored in Redis this way to satisfy the Redis Type Sorted Set requirement that any item in the set be distinct

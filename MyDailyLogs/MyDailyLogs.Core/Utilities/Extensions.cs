@@ -20,12 +20,13 @@ namespace MyDailyLogs.Core.Utilities
 
         public static string FormatForDisplay(this DateTime dt)
         {
-            return $"{dt:MM/dd/yyyy hh:mm:ss zzz}";
+            //return $"{dt:MM/dd/yyyy hh:mm:ss zzz}";
+            return $"{dt:MM/dd/yyyy hh:mm:ss}";
         }
 
         #endregion
 
-        public static byte[] ToEncodedUtf8ByteArray(this string str)
+        public static byte[] ToUtf8EncodedByteArray(this string str)
         {
             return Encoding.UTF8.GetBytes(str);
         }
