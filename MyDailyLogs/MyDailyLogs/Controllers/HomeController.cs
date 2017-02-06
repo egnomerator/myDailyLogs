@@ -14,14 +14,26 @@ namespace MyDailyLogs.Controllers
         }
         public ActionResult Index()
         {
-            var max = new DateTime(2017, 1, 31, 12, 0, 0);
+            // GET TEST DATA
+            //var max = new DateTime(2017, 1, 31, 12, 0, 0);                // start with end of test data and move back
             //var min = DateTime.UtcNow - new TimeSpan(31, 0, 0, 0);        // get past full month
-            var min = max - new TimeSpan(0, 24, 0, 0);                       // get past 24 hours
+            //var min = max - new TimeSpan(0, 24, 0, 0);                    // get past 24 hours
             //var min = max - new TimeSpan(0, 3, 0, 0);                     // get past 3 hours
             //var min = max - new TimeSpan(0, 1, 0, 0);                     // get past hour
 
+
+            // Normal Get
+            var max = DateTime.Now;                                         // start with end of test data and move back
+            var min = max - new TimeSpan(2, 0, 0, 0);                       // get 2
+
             var logEntryVms = _logEntrySvc.GetLogEntries(new Tuple<DateTime, DateTime>(min, max));
             return View(logEntryVms);
+        }
+
+        [HttpPost]
+        public void SaveNewLogEntry(string timeStamp, string logEntryText)
+        {
+            _logEntrySvc.SaveLogEntry(timeStamp,logEntryText);
         }
 
         public ActionResult About()

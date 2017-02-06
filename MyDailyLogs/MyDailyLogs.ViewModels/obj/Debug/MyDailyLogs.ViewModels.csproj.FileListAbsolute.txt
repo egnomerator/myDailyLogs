@@ -8,3 +8,8 @@ H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDaily
 H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.csprojResolveAssemblyReference.cache
 H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.dll
 H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.pdb
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.pdb
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.csprojResolveAssemblyReference.cache
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.pdb

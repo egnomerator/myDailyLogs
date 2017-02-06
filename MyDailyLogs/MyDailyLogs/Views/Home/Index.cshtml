@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using MyDailyLogs.ViewModels;
+@using MyDailyLogs.ViewModels.Configuration
 @model List<LogEntryViewModel>
 
 @{
@@ -11,19 +12,19 @@
 
     // arbitrary choice based on my expectation of never entring logs in the tripple+ digits in a single day
     //  -if i were to design this for other users i'd probably implement this differently
-    const int maxNumbDivDigitWidth = 2;
-    const string leDayDateClass = "leDayDateClass";
-    const string logEntryClass = "logEntryClass";
-    const string lePartClass = "lePartClass";
-    const string leNumbClass = "leNumbClass";
-    const string leDateClass = "leDateClass";
-    const string leTextClass = "leTextClass";
+    const int maxNumbDivDigitWidth = Constants.MaxNumbDivDigitWidth;
+    const string leDayDateClass = Constants.LeDayDateClass;
+    const string logEntryClass = Constants.LogEntryClass;
+    const string lePartClass = Constants.LePartClass;
+    const string leNumbClass = Constants.LeNumbClass;
+    const string leDateClass = Constants.LeDateClass;
+    const string leTextClass = Constants.LeTextClass;
 
-    const string focusLineClass = "focusLineClass";
+    const string focusLineClass = Constants.FocusLineClass;
 
-    const string newLogEntryClass = "newLogEntryClass";
-    const string newLogEntryTextInputId = "newLogEntryTextInputId01";
-    const string newLogEntryTextInputName = "newLogEntryTextInputName01";
+    const string newLogEntryClass = Constants.NewLogEntryClass;
+    const string newLogEntryTextInputId = Constants.NewLogEntryTextInputId + "01";
+    const string newLogEntryTextInputName = Constants.NewLogEntryTextInputName + "01";
 }
 
 <div style="padding: 0px 5px 5px 5px;">
@@ -33,39 +34,46 @@
         var leCount = 0;
         var lastLeNumb = 0;
     }
-    @foreach(var l in logEntries)
+    @if (logEntries.Any())
     {
-        leCount++;
-        var leInFocus = string.Empty;
-        var lastLoadedLogEntry = leCount == logEntries.Count;
-        if (lastLoadedLogEntry)
+        foreach (var l in logEntries)
         {
-            leInFocus = focusLineClass;
-            lastLeNumb = l.EntryNumber;
-        }
-        var currentLogEntryDateTime = DateTime.Parse(l.EntryDateTime);
-        if (currentLogEntryDateTime.Day > prevLogEntryDateTime.Day)
-        {
-            <div class="@leDayDateClass">@l.EntryDateTime.Substring(0,10)</div>
-            prevLogEntryDateTime = currentLogEntryDateTime;
-        }
+            leCount++;
+            var leInFocus = string.Empty;
+            var lastLoadedLogEntry = leCount == logEntries.Count;
+            if (lastLoadedLogEntry)
+            {
+                leInFocus = focusLineClass;
+                lastLeNumb = l.EntryNumber;
+            }
+            var currentLogEntryDateTime = DateTime.Parse(l.EntryDateTime);
+            if (currentLogEntryDateTime.Day > prevLogEntryDateTime.Day)
+            {
+                <div class="@leDayDateClass">@l.EntryDateTime.Substring(0, 10)</div>
+                prevLogEntryDateTime = currentLogEntryDateTime;
+            }
 
-        var numb = l.EntryNumber;
-        var numbStr = numb.ToString(CultureInfo.InvariantCulture);
-        var numbStrLength = numbStr.Length;
-        var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
-        var leNumbStr = string.Empty;
-        for (var d = 0; d < digitDiff; d++)
-        {
-            leNumbStr += " ";
-        }
-        leNumbStr += numbStr + " ";
+            var numb = l.EntryNumber;
+            var numbStr = numb.ToString(CultureInfo.InvariantCulture);
+            var numbStrLength = numbStr.Length;
+            var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
+            var leNumbStr = string.Empty;
+            for (var d = 0; d < digitDiff; d++)
+            {
+                leNumbStr += " ";
+            }
+            leNumbStr += numbStr + " ";
 
-        <div class="@logEntryClass @leInFocus">
-            <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div>
-            <div class="@leNumbClass @lePartClass">@leNumbStr</div>
-            <div class="@leTextClass @lePartClass">@l.EntryText</div>
-        </div>
+            <div class="@logEntryClass @leInFocus">
+                <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div>
+                <div class="@leNumbClass @lePartClass">@leNumbStr</div>
+                <div class="@leTextClass @lePartClass">@l.EntryText</div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="@leDayDateClass">@string.Format("{0:MM/dd/yyyy}", DateTime.Now)</div>
     }
 
     <div class="@logEntryClass @newLogEntryClass">
@@ -81,10 +89,39 @@
 {
     <script type="text/javascript">
 
-        //$(document)
-        //.ready(function() {
-        //        SaveNewLogEntry();
-        //    });
+        var maxNumbDivDigitWidth = @maxNumbDivDigitWidth;
+        var leDayDateClass = @leDayDateClass;
+        var logEntryClass = @logEntryClass;
+        var lePartClass = @lePartClass;
+        var leNumbClass = @leNumbClass;
+        var leDateClass = @leDateClass;
+        var leTextClass = @leTextClass;
+
+        var focusLineClass = @focusLineClass;
+
+        var newLogEntryClass = @newLogEntryClass;
+        var newLogEntryTextInputId = @newLogEntryTextInputId;
+        var newLogEntryTextInputName = @newLogEntryTextInputName;
+
+        function CommonLogEntryClassesAndIds() {
+            LogEntryClasses: {
+                leDayDateClass,logEntryClass,lePartClass
+            }
+        }
+
+        $(document)
+            .on('keyup',
+                '#@newLogEntryTextInputId',
+                function(e) {
+                    var nowUtcMs = Date.now();
+                    var logEntryTextVal = $(this).innerHTML;
+                    var enterKey = 13;
+                    if (e.keyCode === enterKey) {
+                        if (LogEntryTextIsValid(logEntryTextVal)) {
+                            SaveNewLogEntryAndUpdateUI(this, logEntryTextVal, nowUtcMs, );
+                        }
+                    }
+                });
 
     </script>
 }

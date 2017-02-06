@@ -6,7 +6,7 @@ namespace MyDailyLogs.Services.Interfaces
 {
     public interface ILogEntrySvc
     {
-        void SaveLogEntry(long timeStamp, string logEntryText);
+        void SaveLogEntry(string timeStamp, string logEntryText);
 
 
         List<LogEntryViewModel> GetLogEntries(Tuple<DateTime, DateTime> dateRange);

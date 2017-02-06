@@ -22,9 +22,11 @@ namespace MyDailyLogs.Services
         }
 
         /// <paramref name="timeStamp"/> expected to be milliseconds UTC since epoch
-        public void SaveLogEntry(long timeStamp, string logEntryText)
+        public void SaveLogEntry(string timeStamp, string logEntryText)
         {
-            _logEntryPersistence.SaveLogEntry(timeStamp,$"{timeStamp}{logEntryText}");
+            // Front-end validation ensures the timeStamp string is ready to parse
+            var ts = long.Parse(timeStamp);
+            _logEntryPersistence.SaveLogEntry(ts,$"{timeStamp}{logEntryText}");
         }
 
         public List<LogEntryViewModel> GetLogEntries(Tuple<DateTime,DateTime> dateRange)
@@ -32,8 +34,11 @@ namespace MyDailyLogs.Services
             var dateRangeLongs = new Tuple<long, long>
                 (dateRange.Item1.ToUniversalTime().ToMillisecondsSinceEpoch(),
                  dateRange.Item2.ToUniversalTime().ToMillisecondsSinceEpoch());
-            var result = _logEntryPersistence.GetLogEntries(dateRangeLongs);
-            return ConvertLogEntryQueryByteArrayResultToLogEntryVms(result);
+            var results = _logEntryPersistence.GetLogEntries(dateRangeLongs);
+
+            if (results.Length > Constants.MaxLogEntriesServed) results = TrimResultsToMax(results);
+
+            return ConvertLogEntryQueryByteArrayResultToLogEntryVms(results);
         }
 
         public List<LogEntryViewModel> GetPrevLogEntriesFiftyMax(DateTime firstSeenEntry)
@@ -51,11 +56,27 @@ namespace MyDailyLogs.Services
             throw new NotImplementedException();
         }
 
+        private static byte[][] TrimResultsToMax(byte[][] logEntries)
+        {
+            var max = Constants.MaxLogEntriesServed%2 == 0 ? Constants.MaxLogEntriesServed : Constants.MaxLogEntriesServed + 1;
+            // 2 array members per logEntry: 1) timestamp 2) text; So if we have a max of n logEntries, we need n*2 array members
+            max = max*2;
+
+            if (logEntries.Length <= max) return logEntries;
+
+            var overage = logEntries.Length - max;
+            var trimmedResults = new byte[max][];
+            Array.Copy(logEntries, overage, trimmedResults, 0, max);
+
+            return trimmedResults;
+        }
+
         private static List<LogEntryViewModel> ConvertLogEntryQueryByteArrayResultToLogEntryVms(byte[][] logEntries)
         {
+            if (!logEntries.Any()) return new List<LogEntryViewModel>();
+            if(logEntries.Length < 2) throw new Exception("Exactly 1 result; should be 2 or some larger multiple of 2 (or zero).");
+
             var logEntryVms = new List<LogEntryViewModel>();
-            if (!logEntries.Any()) return logEntryVms;
-            if(logEntries.Length < 2) throw new Exception("Exactly 1 result; should be 2 or more (or zero, if empty db).");
 
             var ts = GetTimeStampFromByteArray(logEntries[1]);
             var prevEntryTimeStamp = ts.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
