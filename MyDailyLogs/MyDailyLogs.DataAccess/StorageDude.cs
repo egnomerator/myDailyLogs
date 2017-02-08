@@ -12,6 +12,16 @@ namespace MyDailyLogs.DataAccess
             LogEntryRepository.SaveLogEntry(timeStamp, logEntryText, new RedisClient());
         }
 
+        public void SaveDatabaseToDisk()
+        {
+            LogEntryRepository.SaveDatabaseToDisk(new RedisClient());
+        }
+
+        public void SaveDatabaseToDiskBackground()
+        {
+            LogEntryRepository.SaveDatabaseToDiskBackground(new RedisClient());
+        }
+
         public byte[][] GetLogEntries(Tuple<long, long> dateRange)
         {
             return LogEntryRepository.GetLogEntries(dateRange, new RedisClient());

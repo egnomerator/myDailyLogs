@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceProcess;
 using MyDailyLogs.ViewModels;
 
 namespace MyDailyLogs.Services.Interfaces
 {
     public interface ILogEntrySvc
     {
+        void StartPersistenceBackgroundSvcIfNotRunning();
+        bool CheckIfPersistenceBackgroundSvcIsRunning(ServiceController svc = null);
+
+
+
+        
+
+
         void SaveLogEntry(string timeStamp, string logEntryText);
 
 

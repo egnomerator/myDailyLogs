@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.ServiceProcess;
 using MyDailyLogs.Core.Configuration;
 using MyDailyLogs.Core.Interfaces;
 using MyDailyLogs.Core.Utilities;
@@ -21,7 +22,20 @@ namespace MyDailyLogs.Services
             _logEntryPersistence = new StorageDude();
         }
 
-        /// <paramref name="timeStamp"/> expected to be milliseconds UTC since epoch
+        public void StartPersistenceBackgroundSvcIfNotRunning()
+        {
+            var svcPersistence = new ServiceController(Constants.PersistenceServiceName);
+            var isRunning = CheckIfPersistenceBackgroundSvcIsRunning(svcPersistence);
+            if(!isRunning) svcPersistence.Start();
+        }
+
+        public bool CheckIfPersistenceBackgroundSvcIsRunning(ServiceController svc = null)
+        {
+            svc = svc ?? new ServiceController(Constants.PersistenceServiceName);
+            return svc.Status == ServiceControllerStatus.Running;
+        }
+
+        /// <paramref name="timeStamp"/> UI will send this value as milliseconds since epoch
         public void SaveLogEntry(string timeStamp, string logEntryText)
         {
             // Front-end validation ensures the timeStamp string is ready to parse
@@ -103,6 +117,7 @@ namespace MyDailyLogs.Services
                 vm.EntryDateTime = currentEntryTimeStamp.FormatForDisplay();
                 vm.EntryNumber = entryNumber;
                 vm.EntryText = entryText;
+                vm.EntryScore = currentTs;
 
                 logEntryVms.Add(vm);
             }

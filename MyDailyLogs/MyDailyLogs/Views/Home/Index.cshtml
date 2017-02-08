@@ -10,6 +10,7 @@
 
     var origFirstLoadedLogEntryDateTime = logEntries.Any() ? DateTime.Parse(logEntries.First().EntryDateTime) : new DateTime();
 
+    const string logEntryListContainerId = Constants.LogEntryListContainerId + "01";
     // arbitrary choice based on my expectation of never entring logs in the tripple+ digits in a single day
     //  -if i were to design this for other users i'd probably implement this differently
     const int maxNumbDivDigitWidth = Constants.MaxNumbDivDigitWidth;
@@ -23,11 +24,27 @@
     const string focusLineClass = Constants.FocusLineClass;
 
     const string newLogEntryClass = Constants.NewLogEntryClass;
+    const string newLogEntryTsEllipsis = Constants.NewLogEntryTsEllipsis;
+    const string newLogEntryTextInputPlaceholder = Constants.NewLogEntryTextInputPlaceholder;
     const string newLogEntryTextInputId = Constants.NewLogEntryTextInputId + "01";
     const string newLogEntryTextInputName = Constants.NewLogEntryTextInputName + "01";
+
+    Func<ushort, string> formatLogEntryNumber = n =>
+    {
+        var numb = n;
+        var numbStr = numb.ToString(CultureInfo.InvariantCulture);
+        var numbStrLength = numbStr.Length;
+        var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
+        var leNumbStr = string.Empty;
+        for (var d = 0; d < digitDiff; d++)
+        {
+            leNumbStr += " ";
+        }
+        return leNumbStr + numbStr + " ";
+    };
 }
 
-<div style="padding: 0px 5px 5px 5px;">
+<div id="@logEntryListContainerId" style="padding: 0px 5px 5px 5px;">
 
     @{
         var prevLogEntryDateTime = DateTime.MinValue;
@@ -44,81 +61,83 @@
             if (lastLoadedLogEntry)
             {
                 leInFocus = focusLineClass;
-                lastLeNumb = l.EntryNumber;
             }
             var currentLogEntryDateTime = DateTime.Parse(l.EntryDateTime);
-            if (currentLogEntryDateTime.Day > prevLogEntryDateTime.Day)
+            if (prevLogEntryDateTime.Day < currentLogEntryDateTime.Day)
             {
                 <div class="@leDayDateClass">@l.EntryDateTime.Substring(0, 10)</div>
                 prevLogEntryDateTime = currentLogEntryDateTime;
             }
-
-            var numb = l.EntryNumber;
-            var numbStr = numb.ToString(CultureInfo.InvariantCulture);
-            var numbStrLength = numbStr.Length;
-            var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
-            var leNumbStr = string.Empty;
-            for (var d = 0; d < digitDiff; d++)
-            {
-                leNumbStr += " ";
-            }
-            leNumbStr += numbStr + " ";
-
+            var fmtLogEntryNumber = formatLogEntryNumber(l.EntryNumber);
+            lastLeNumb = l.EntryNumber;
             <div class="@logEntryClass @leInFocus">
-                <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div>
-                <div class="@leNumbClass @lePartClass">@leNumbStr</div>
-                <div class="@leTextClass @lePartClass">@l.EntryText</div>
+                <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div><div class="@leNumbClass @lePartClass">@fmtLogEntryNumber</div><div class="@leTextClass @lePartClass">@l.EntryText</div><div class="hiddenScore">@l.EntryScore</div>
             </div>
         }
     }
-    else
-    {
-        <div class="@leDayDateClass">@string.Format("{0:MM/dd/yyyy}", DateTime.Now)</div>
+    @{
+        var currentDateTime = DateTime.Now;
+        if (prevLogEntryDateTime.Day < currentDateTime.Day)
+        {
+            <div class="@leDayDateClass">@($"{DateTime.Now:MM/dd/yyyy}")</div>
+            lastLeNumb = 0;
+        }
     }
-
+    @{
+        var fmtNewLogEntryNumber = formatLogEntryNumber((ushort)(lastLeNumb + 1));
+    }
     <div class="@logEntryClass @newLogEntryClass">
-        <div class="@leDateClass @lePartClass">        ...</div>
-        <div class="@leNumbClass @lePartClass"> @(lastLeNumb + 1) </div>
-        <input id="@newLogEntryTextInputId" class="@leTextClass @lePartClass" type="text" name="@newLogEntryTextInputName" autofocus placeholder="Type a new log entry and hit enter to save it."/>
-
+        <div class="@leDateClass @lePartClass">@newLogEntryTsEllipsis</div><div class="@leNumbClass @lePartClass">@fmtNewLogEntryNumber</div><input id="@newLogEntryTextInputId" class="@leTextClass @lePartClass" type="text" name="@newLogEntryTextInputName" autofocus placeholder="@newLogEntryTextInputPlaceholder"/>
     </div>
-
 </div>
 
 @section scripts
 {
     <script type="text/javascript">
 
-        var maxNumbDivDigitWidth = @maxNumbDivDigitWidth;
-        var leDayDateClass = @leDayDateClass;
-        var logEntryClass = @logEntryClass;
-        var lePartClass = @lePartClass;
-        var leNumbClass = @leNumbClass;
-        var leDateClass = @leDateClass;
-        var leTextClass = @leTextClass;
+        var logEntryListContainerId = "@logEntryListContainerId";
+        var maxNumbDivDigitWidth = "@maxNumbDivDigitWidth";
+        var leDayDateClass = "@leDayDateClass";
+        var logEntryClass = "@logEntryClass";
+        var lePartClass = "@lePartClass";
+        var leNumbClass = "@leNumbClass";
+        var leDateClass = "@leDateClass";
+        var leTextClass = "@leTextClass";
 
-        var focusLineClass = @focusLineClass;
+        var focusLineClass = "@focusLineClass";
 
-        var newLogEntryClass = @newLogEntryClass;
-        var newLogEntryTextInputId = @newLogEntryTextInputId;
-        var newLogEntryTextInputName = @newLogEntryTextInputName;
-
-        function CommonLogEntryClassesAndIds() {
-            LogEntryClasses: {
-                leDayDateClass,logEntryClass,lePartClass
-            }
-        }
+        var newLogEntryClass = "@newLogEntryClass";
+        var newLogEntryTsEllipsis = "@newLogEntryTsEllipsis";
+        var newLogEntryTextInputPlaceholder = "@newLogEntryTextInputPlaceholder";
+        var newLogEntryTextInputId = "@newLogEntryTextInputId";
+        var newLogEntryTextInputName = "@newLogEntryTextInputName";
 
         $(document)
             .on('keyup',
                 '#@newLogEntryTextInputId',
                 function(e) {
                     var nowUtcMs = Date.now();
-                    var logEntryTextVal = $(this).innerHTML;
+                    var logEntryTextVal = this.value;
                     var enterKey = 13;
                     if (e.keyCode === enterKey) {
                         if (LogEntryTextIsValid(logEntryTextVal)) {
-                            SaveNewLogEntryAndUpdateUI(this, logEntryTextVal, nowUtcMs, );
+                            UpdateLogEntryElementAttributeVariables(
+                                    logEntryListContainerId,
+                                    maxNumbDivDigitWidth,
+                                    leDayDateClass,
+                                    logEntryClass,
+                                    lePartClass,
+                                    leNumbClass,
+                                    leDateClass,
+                                    leTextClass,
+                                    focusLineClass,
+                                    newLogEntryClass,
+                                    newLogEntryTsEllipsis,
+                                    newLogEntryTextInputPlaceholder,
+                                    newLogEntryTextInputId,
+                                    newLogEntryTextInputName
+                                );
+                            SaveNewLogEntryAndUpdateUI(this, logEntryTextVal, nowUtcMs);
                         }
                     }
                 });
@@ -129,17 +148,17 @@
 @section styles
 {
     <style type="text/css">
-        
+
         #@newLogEntryTextInputId{
             border: none;
             outline: none;
-            width: 930px;
-            max-width: 930px;
-
+            width: 900px !important;
+            max-width: 900px !important;
+            padding-top: 0px;
         }
-
         .@leDayDateClass{
-            font-size: xx-large;
+            color: #222222;
+            font-size: 2.25em;
             background: lightgray;
             padding-left: 5px;
             border-top: 5px solid lightgray;
@@ -147,13 +166,13 @@
             margin-bottom: -1px;
         }
         .@logEntryClass {
+            color: #222222;
             line-height: 0.9em;
             font-size: x-large;
-            border-bottom: 1px solid #222222;
+            border-bottom: 0.5px solid lightgray;
         }
         .@lePartClass{
             display: inline;
-            white-space: pre;
             font-family: monospace;
         }
         .@leDateClass{
@@ -161,10 +180,16 @@
         }
         .@leNumbClass{
             background: lightgray;
+            border-bottom: 0.5px solid lightgray;
+            white-space: pre;
+            margin-left: 0.25%;
         }
-        .@leTextClass{ 
-            
+        .@leTextClass{
+            min-width: 920px;
+            margin-left: 0.25%;
         }
-
+        .hiddenScore {
+            display: none;
+        }
     </style>
 }

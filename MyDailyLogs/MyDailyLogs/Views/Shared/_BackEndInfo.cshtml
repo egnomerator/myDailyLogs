@@ -1,0 +1,17 @@
+﻿@using MyDailyLogs.ViewModels.Configuration
+@{
+    const string dbInfoAreaTitle = Constants.DbInfoAreaTitle;
+    const string dbUpdateBtnTitle = Constants.DbUpdateBtnTitle;
+    const string dbSaveBtnTitle = Constants.DbSaveBtnTitle;
+}
+<div id="backEndInfo" class="backEndInfoClass" title="@dbInfoAreaTitle">
+    <div id="beTitle" class="beInfoTitle">Database</div>
+    <div id="beDetailArea" class="beDetailArea">
+        <div id="beStatus" class="beInfoPc">Updating</div>
+        <div id="beLastChk" class="beInfoPc">status . . .</div>
+    </div>
+    <input id="beUpdate" class="beUpdateBtn" type="button" value="Check" title="@dbUpdateBtnTitle"/>
+    <div class="beDivider">___________</div>
+    <div id="saveQuit" class="saveQuitTitle">Save And Quit</div>
+    <input id="beSave" class="beSaveBtn" type="button" value="Save" title="@dbSaveBtnTitle"/>
+</div>

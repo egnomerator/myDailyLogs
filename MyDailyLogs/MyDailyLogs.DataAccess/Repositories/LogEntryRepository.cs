@@ -26,6 +26,38 @@ namespace MyDailyLogs.DataAccess.Repositories
             }
         }
 
+        public static void SaveDatabaseToDisk(IRedisNativeClient client)
+        {
+            try
+            {
+                using (client)
+                {
+                    client.Save();
+                }
+            }
+            catch (Exception e)
+            {
+                var msg = e.Message;
+                throw;
+            }
+        }
+
+        public static void SaveDatabaseToDiskBackground(IRedisNativeClient client)
+        {
+            try
+            {
+                using (client)
+                {
+                    client.BgSave();
+                }
+            }
+            catch (Exception e)
+            {
+                var msg = e.Message;
+                throw;
+            }
+        }
+
         public static byte[][] GetLogEntries(Tuple<long, long> dateRange, IRedisNativeClient client)
         {
             var logEntries = new byte[][] {};

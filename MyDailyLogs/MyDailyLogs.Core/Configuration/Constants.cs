@@ -4,7 +4,8 @@ namespace MyDailyLogs.Core.Configuration
 {
     public static class Constants
     {
-        public static DateTime Epoch = new DateTime(1970, 1, 1);
+        public static string PersistenceServiceName = "Redis";
+        public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         public const string DisplayPatternDateTime = "MM/dd/yyyy hh:mm:ss zzz";
 
         // This Number is what the byte[][] of LogEntries that is returned from Redis will be trimmed down to if necessary
