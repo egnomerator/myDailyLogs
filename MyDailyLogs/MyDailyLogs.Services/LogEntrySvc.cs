@@ -29,10 +29,53 @@ namespace MyDailyLogs.Services
             if(!isRunning) svcPersistence.Start();
         }
 
-        public bool CheckIfPersistenceBackgroundSvcIsRunning(ServiceController svc = null)
+        public bool CheckIfPersistenceBackgroundSvcIsRunning(object svcObj = null)
         {
-            svc = svc ?? new ServiceController(Constants.PersistenceServiceName);
+            // Purposefully not requiring parameter of type ServiceController so
+            // the UI layer does not need a reference to the System.ServiceProcess assembly
+            svcObj = svcObj ?? new ServiceController(Constants.PersistenceServiceName);
+            
+            // If this object is of a type other than ServiceController, throwing an exception is desired here.
+            var svc = (ServiceController)svcObj;
             return svc.Status == ServiceControllerStatus.Running;
+        }
+
+        public bool SaveAsPrepForQuit()
+        {
+            var svcIsRunning = CheckIfPersistenceBackgroundSvcIsRunning();
+            if (!svcIsRunning) return false;
+
+            _logEntryPersistence.SaveDatabaseToDisk();
+            return true;
+        }
+
+        public bool StopBackgroundSvc()
+        {
+            var svcPersistence = new ServiceController(Constants.PersistenceServiceName);
+            var svcIsRunning = CheckIfPersistenceBackgroundSvcIsRunning();
+            if (!svcIsRunning) return true;
+
+            svcPersistence.Stop();
+            return true;
+        }
+
+        public bool StartBackgroundSvc()
+        {
+            var svcPersistence = new ServiceController(Constants.PersistenceServiceName);
+            var svcIsRunning = CheckIfPersistenceBackgroundSvcIsRunning();
+            if (svcIsRunning) return true;
+
+            svcPersistence.Start();
+            return true;
+        }
+
+        public bool SaveRecentLogEntries(string logEntries)
+        {
+            var leArray = logEntries.ConvertStringOfCommaSeparatedArrayToListOfString();
+            var leTuples = ConvertLogEntryStringArrayToTuplesList(leArray);
+
+            _logEntryPersistence.SaveRecentLogEntries(leTuples);
+            return true;
         }
 
         /// <paramref name="timeStamp"/> UI will send this value as milliseconds since epoch
@@ -123,6 +166,24 @@ namespace MyDailyLogs.Services
             }
 
             return logEntryVms;
+        }
+
+        private List<Tuple<long, string>> ConvertLogEntryStringArrayToTuplesList(string[] leArray)
+        {
+            if (!leArray.Any()) return new List<Tuple<long, string>>();
+            if (leArray.Length < 2) throw new Exception("Exactly 1 result; should be 2 or some larger multiple of 2 (or zero).");
+
+            var leTuples = new List<Tuple<long, string>>();
+
+            for (var i = 0; i < leArray.Length; i += 2)
+            {
+                // if this doesn't parse, i want an error thrown
+                var currentTs = long.Parse(leArray[i]);
+                var currentText = leArray[i + 1];
+                leTuples.Add(new Tuple<long, string>(currentTs,currentText));
+            }
+
+            return leTuples;
         }
 
         private static long GetTimeStampFromByteArray(byte[] bArr)

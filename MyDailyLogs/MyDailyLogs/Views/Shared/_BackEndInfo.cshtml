@@ -1,17 +1,72 @@
 ﻿@using MyDailyLogs.ViewModels.Configuration
 @{
-    const string dbInfoAreaTitle = Constants.DbInfoAreaTitle;
+    const string dbInfoBarId = Constants.DbInfoBarId;
+    const string dbInfoBarClass = Constants.DbInfoBarClass;
+    const string dbInfoBarLblId = Constants.DbInfoBarLblId;
+    const string dbInfoBarLblClass = Constants.DbInfoBarLblClass;
+    const string dbInfoBarSpecialMsgAreaId = Constants.DbInfoBarSpecialMsgAreaId;
+    const string dbInfoBarSpecialMsgAreaClass = Constants.DbInfoBarSpecialMsgAreaClass;
+    const string dbStatusAreaId = Constants.DbStatusAreaId;
+    const string dbStatusAreaClass = Constants.DbStatusAreaClass;
+    const string dbStatusAreaLblId = Constants.DbStatusAreaLblId;
+    const string dbStatusAreaLblClass = Constants.DbStatusAreaLblClass;
+    const string dbStatusValueId = Constants.DbStatusValueId;
+    const string dbStatusValueClass = Constants.DbStatusValueClass;
+    const string dbStatusValueInrHtml = Constants.DbStatusValueInrHtml;
+    const string dbLastCheckValueId = Constants.DbLastCheckValueId;
+    const string dbLastCheckValueClass = Constants.DbLastCheckValueClass;
+
+    const string dbUpdateBtnId = Constants.DbUpdateBtnId;
+    const string dbUpdateBtnClass = Constants.DbUpdateBtnClass;
+    const string dbUpdateBtnValue = Constants.DbUpdateBtnValue;
+
+    const string dbStartBtnId = Constants.DbStartBtnId;
+    const string dbStartBtnClass = Constants.DbStartBtnClass;
+    const string dbStartBtnValue = Constants.DbStartBtnValue;
+
+    const string dbSaveBtnClass = Constants.DbSaveBtnClass;
+    const string dbSaveBtnValue = Constants.DbSaveBtnValue;
+    const string dbSaveBtnId = Constants.DbSaveBtnId;
+    const string dbSaveAndQuitAreaId = Constants.DbSaveAndQuitAreaId;
+    const string dbSaveAndQuitAreaClass = Constants.DbSaveAndQuitAreaClass;
+    const string dbSaveAndQuitLblId = Constants.DbSaveAndQuitLblId;
+    const string dbSaveAndQuitLblClass = Constants.DbSaveAndQuitLblClass;
+    const string dbBarDimClass = Constants.DbBarDimClass;
+    const string dbBarMsgId = Constants.DbBarMsgId;
+    const string dbBarMsgClass = Constants.DbBarMsgClass;
+    const string dbBarMsgTextId = Constants.DbBarMsgTextId;
+    const string dbBarMsgTextClass = Constants.DbBarMsgTextClass;
+    const string dbBarMsgXId = Constants.DbBarMsgXId;
+    const string dbBarMsgXclass = Constants.DbBarMsgXclass;
+    const string hideClass = Constants.HideClass;
+    const string noDisplayClass = Constants.NoDisplayClass;
+
+    const string dbStatusTextUpdating = Constants.DbStatusTextUpdating;
+    const string dbStatusTextRunning = Constants.DbStatusTextRunning;
+    const string dbStatusTextStopped = Constants.DbStatusTextStopped;
+
+    const string dbInfoBarTitle = Constants.DbInfoBarTitle;
+    const string dbStatusAreaTitle = Constants.DbStatusAreaTitle;
     const string dbUpdateBtnTitle = Constants.DbUpdateBtnTitle;
+    const string dbStartBtnTitle = Constants.DbStartBtnTitle;
     const string dbSaveBtnTitle = Constants.DbSaveBtnTitle;
 }
-<div id="backEndInfo" class="backEndInfoClass" title="@dbInfoAreaTitle">
-    <div id="beTitle" class="beInfoTitle">Database</div>
-    <div id="beDetailArea" class="beDetailArea">
-        <div id="beStatus" class="beInfoPc">Updating</div>
-        <div id="beLastChk" class="beInfoPc">status . . .</div>
+
+<div id="@dbInfoBarId" class="@dbInfoBarClass" title="@dbInfoBarTitle">
+    <div id="@dbInfoBarLblId" class="@dbInfoBarLblClass">Service</div>
+    <div id="@dbStatusAreaId" class="@dbStatusAreaClass" title="@dbStatusAreaTitle">
+        <div id="@dbStatusAreaLblId" class="@dbStatusAreaLblClass @dbBarDimClass">
+            <div id="@dbStatusValueId" class="@dbStatusValueClass">@dbStatusValueInrHtml</div>
+            <input id="@dbUpdateBtnId" class="@dbUpdateBtnClass" type="button" value="@dbUpdateBtnValue" title="@dbUpdateBtnTitle" />
+            <input id="@dbStartBtnId" class="@dbStartBtnClass @noDisplayClass" type="button" value="@dbStartBtnValue" title="@dbStartBtnTitle" />
+        </div>
+        <div id="@dbLastCheckValueId" class="@dbLastCheckValueClass @dbBarDimClass">@dbStatusTextUpdating</div>
     </div>
-    <input id="beUpdate" class="beUpdateBtn" type="button" value="Check" title="@dbUpdateBtnTitle"/>
-    <div class="beDivider">___________</div>
-    <div id="saveQuit" class="saveQuitTitle">Save And Quit</div>
-    <input id="beSave" class="beSaveBtn" type="button" value="Save" title="@dbSaveBtnTitle"/>
+    <div id="@dbInfoBarSpecialMsgAreaId" class="@dbInfoBarSpecialMsgAreaClass @dbBarDimClass">
+        <div id="@dbBarMsgId" class="@dbBarMsgClass @hideClass"><div id="@dbBarMsgTextId" class="@dbBarMsgTextClass" style="display: inline;">...</div><div id="@dbBarMsgXId" class="@dbBarMsgXclass" style="text-align: right; padding-right: 5px;">x</div></div>
+    </div>
+    <div id="@dbSaveAndQuitAreaId" class="@dbSaveAndQuitAreaClass @dbBarDimClass" title="@dbSaveBtnTitle">
+        <div id="@dbSaveAndQuitLblId" class="@dbSaveAndQuitLblClass">Save and Quit</div>
+        <input id="@dbSaveBtnId" class="@dbSaveBtnClass" type="button" value="@dbSaveBtnValue"/>
+    </div>
 </div>

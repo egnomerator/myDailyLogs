@@ -4,43 +4,4 @@
     max-height: 86vh;
     width: 100%;
     max-width: 100%;
-    overflow-y: scroll;
-}
-.backEndInfoClass {
-    float: left;
-    height: 175px;
-    width: 90px;
-    background: #A41F16;
-    color: #F2B9B6;
-    text-align: center;
-    margin-top: 0.4%;
-    margin-left: 0.3%;
-    padding: 2px;
-}
-.saveQuitTitle,
-.beInfoTitle {
-    text-decoration: underline;
-    margin-bottom: 5%;
-}
-.saveQuitTitle {
-    font-size: 0.8em
-}
-.beDetailArea {
-    height: 45px;
-    width: 100%;
-}
-.beInfoPc {
-    text-align: left;
-    text-decoration: none !important;
-}
-.beDivider {
-    margin-top: -5%;
-}
-.beSaveBtn {
-    margin-top: 6%;
-}
-.beSaveBtn,
-.beUpdateBtn {
-    background: #D92B21;
-    color: #F2B9B6;
 }

@@ -8,11 +8,13 @@ namespace MyDailyLogs.Services.Interfaces
     public interface ILogEntrySvc
     {
         void StartPersistenceBackgroundSvcIfNotRunning();
-        bool CheckIfPersistenceBackgroundSvcIsRunning(ServiceController svc = null);
+        bool CheckIfPersistenceBackgroundSvcIsRunning(object svcObj = null);
 
 
-
-        
+        bool SaveAsPrepForQuit();
+        bool StopBackgroundSvc();
+        bool StartBackgroundSvc();
+        bool SaveRecentLogEntries(string logEntries);
 
 
         void SaveLogEntry(string timeStamp, string logEntryText);

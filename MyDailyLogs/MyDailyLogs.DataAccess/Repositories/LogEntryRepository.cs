@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MyDailyLogs.DataAccess.Configuration;
 using MyDailyLogs.Core.Utilities;
@@ -17,6 +18,25 @@ namespace MyDailyLogs.DataAccess.Repositories
                 using (client)
                 {
                     client.ZAdd(Constants.LogEntrySetId, timeStamp, entryTextEncodedByteArray);
+                }
+            }
+            catch (Exception e)
+            {
+                var msg = e.Message;
+                throw;
+            }
+        }
+
+        public static void SaveRecentLogEntries(List<Tuple<long,string>> logEntries, IRedisNativeClient client)
+        {
+            try
+            {
+                using (client)
+                {
+                    logEntries.ForEach(le =>
+                    {
+                        client.ZAdd(Constants.LogEntrySetId, le.Item1, le.Item2.ToUtf8EncodedByteArray());
+                    });
                 }
             }
             catch (Exception e)

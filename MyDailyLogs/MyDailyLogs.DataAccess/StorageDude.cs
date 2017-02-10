@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MyDailyLogs.Core.Interfaces;
 using MyDailyLogs.DataAccess.Repositories;
 using ServiceStack.Redis;
@@ -10,6 +11,11 @@ namespace MyDailyLogs.DataAccess
         public void SaveLogEntry(long timeStamp, string logEntryText)
         {
             LogEntryRepository.SaveLogEntry(timeStamp, logEntryText, new RedisClient());
+        }
+
+        public void SaveRecentLogEntries(List<Tuple<long, string>> logEntries)
+        {
+            LogEntryRepository.SaveRecentLogEntries(logEntries, new RedisClient());
         }
 
         public void SaveDatabaseToDisk()

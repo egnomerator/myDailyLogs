@@ -1,4 +1,5 @@
-﻿var _logEntryListContainerId = "";
+﻿var _leNotSavingAndIsKnown = "";
+var _logEntryListContainerId = "";
 var _maxNumbDivDigitWidth = "";
 var _leDayDateClass = "";
 var _logEntryClass = "";
@@ -6,14 +7,36 @@ var _lePartClass = "";
 var _leNumbClass = "";
 var _leDateClass = "";
 var _leTextClass = "";
+var _hiddenScoreClass = "";
+var _dbStatusTextUpdating = "";
+var _dbStatusTextRunning = "";
+var _dbStatusTextStopped = "";
+var _dbUpdateBtnId = "";
+var _dbUpdateBtnClass = "";
+var _dbUpdateBtnValue = "";
+var _dbUpdateBtnTitle = "";
+var _dbStartBtnId = "";
+var _dbStartBtnClass = "";
+var _dbStartBtnValue = "";
+var _dbStartBtnTitle = "";
+var _dbBarMsgSuccess = "";
+var _dbBarMsgServiceStarted = "";
+var _dbBarMsgFail = "";
+var _dbBarMsgAutoSaveFailed = "";
+var _dbBarDimClass = "";
+var _hideClass = "";
+var _noDisplayClass = "";
+var _leUnsavedClass = "";
 var _focusLineClass = "";
 var _newLogEntryClass = "";
 var _newLogEntryTsEllipsis = "";
 var _newLogEntryTextInputPlaceholder = "";
 var _newLogEntryTextInputId = "";
 var _newLogEntryTextInputName = "";
+var _startBtnFlashInterval = null;
 
 function UpdateLogEntryElementAttributeVariables(
+    leNotSavingAndIsKnown,
     logEntryListContainerId,
     maxNumbDivDigitWidth,
     leDayDateClass,
@@ -22,6 +45,26 @@ function UpdateLogEntryElementAttributeVariables(
     leNumbClass,
     leDateClass,
     leTextClass,
+    hiddenScoreClass,
+    dbStatusTextUpdating,
+    dbStatusTextRunning,
+    dbStatusTextStopped,
+    dbUpdateBtnId,
+    dbUpdateBtnClass,
+    dbUpdateBtnValue,
+    dbUpdateBtnTitle,
+    dbStartBtnId,
+    dbStartBtnClass,
+    dbStartBtnValue,
+    dbStartBtnTitle,
+    dbBarDimClass,
+    hideClass,
+    noDisplayClass,
+    leUnsavedClass,
+    dbBarMsgSuccess,
+    dbBarMsgServiceStarted,
+    dbBarMsgFail,
+    dbBarMsgAutoSaveFailed,
     focusLineClass,
     newLogEntryClass,
     newLogEntryTsEllipsis,
@@ -29,6 +72,7 @@ function UpdateLogEntryElementAttributeVariables(
     newLogEntryTextInputId,
     newLogEntryTextInputName
 ) {
+    _leNotSavingAndIsKnown = leNotSavingAndIsKnown;
     _logEntryListContainerId = logEntryListContainerId;
     _maxNumbDivDigitWidth = maxNumbDivDigitWidth;
     _leDayDateClass = leDayDateClass;
@@ -37,6 +81,26 @@ function UpdateLogEntryElementAttributeVariables(
     _leNumbClass = leNumbClass;
     _leDateClass = leDateClass;
     _leTextClass = leTextClass;
+    _hiddenScoreClass = hiddenScoreClass;
+    _dbStatusTextUpdating = dbStatusTextUpdating;
+    _dbStatusTextRunning = dbStatusTextRunning;
+    _dbStatusTextStopped = dbStatusTextStopped;
+    _dbUpdateBtnId = dbUpdateBtnId;
+    _dbUpdateBtnClass = dbUpdateBtnClass;
+    _dbUpdateBtnValue = dbUpdateBtnValue;
+    _dbUpdateBtnTitle = dbUpdateBtnTitle;
+    _dbStartBtnId = dbStartBtnId;
+    _dbStartBtnClass = dbStartBtnClass;
+    _dbStartBtnValue = dbStartBtnValue;
+    _dbStartBtnTitle = dbStartBtnTitle;
+    _dbBarDimClass = dbBarDimClass;
+    _hideClass = hideClass;
+    _noDisplayClass = noDisplayClass;
+    _leUnsavedClass = leUnsavedClass;
+    _dbBarMsgSuccess = dbBarMsgSuccess;
+    _dbBarMsgServiceStarted = dbBarMsgServiceStarted;
+    _dbBarMsgFail = dbBarMsgFail;
+    _dbBarMsgAutoSaveFailed = dbBarMsgAutoSaveFailed;
     _focusLineClass = focusLineClass;
     _newLogEntryClass = newLogEntryClass;
     _newLogEntryTsEllipsis = newLogEntryTsEllipsis;
@@ -45,19 +109,143 @@ function UpdateLogEntryElementAttributeVariables(
     _newLogEntryTextInputName = newLogEntryTextInputName;
 }
 
+
+// SECTION START: log entry handling
+
 function LogEntryTextIsValid(text) {
     // any Redis security vulnerabilities? Research.
     return text !== undefined && text !== null && text !== "";
 }
 
-function SaveNewLogEntryAndUpdateUI(leTextInputEl, logEntryTextVal, nowUtcMs) {
-    SaveNewLogEntry(nowUtcMs, logEntryTextVal);
-    UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTextVal, nowUtcMs);
+function SaveNewLogEntryAndUpdateUI(leTextInputEl, logEntryTextVal, nowUtcMs, msgEl, msgTextEl) {
+    var newLogEntry = UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTextVal, nowUtcMs);
+    SaveNewLogEntry(nowUtcMs, logEntryTextVal, msgEl, msgTextEl, _dbBarMsgAutoSaveFailed, newLogEntry);
 }
 
-function SaveNewLogEntry(nowUtcMs, logEntryTextVal) {
-    var postUrl = "/Home/SaveNewLogEntry";
-    JqueryAjaxFireAndForget(postUrl, { timeStamp: nowUtcMs, logEntryText: logEntryTextVal });
+function SaveNewLogEntry(nowUtcMs, logEntryTextVal, msgEl, msgTextEl, msgText, newLogEntry) {
+    var url = "/Home/SaveNewLogEntry";
+    JqueryAjaxRegular(
+            "POST",
+            url,
+            { timeStamp: nowUtcMs, logEntryText: logEntryTextVal },
+            null,
+            function (returnData) { handleAustoSaveFailureSituation(returnData, msgEl, msgTextEl, msgText, newLogEntry); }
+        );
+}
+
+function handleStartBtnClick(msgEl, msgTextEl) {
+    toggleAutoSavingKnownStatus();
+    // still need to actually start the service
+    var url = "/Home/StartBackgroundSvc";
+    JqueryAjaxRegular(
+            "POST",
+            url,
+            null,
+            function (returnData) { handleServiceStartedFollowup(returnData, msgEl, msgTextEl); },
+            null
+        );
+    // and then handle prompt to save
+
+}
+
+function handleServiceStartedFollowup(success, msgEl, msgTextEl) {
+    var msgText = success ? _dbBarMsgServiceStarted : "Something went wrong :( idk";
+    showResultMsg(msgEl, msgTextEl, msgText);
+    var chckBtn = document.getElementById(_dbUpdateBtnId);
+    var startBtn = document.getElementById(_dbStartBtnId);
+    replaceBtnWithBtn(startBtn, chckBtn);
+    var specialMsg = $(document.getElementById(msgEl));
+    toggleItemFlashing(specialMsg, true);
+}
+
+function saveAllUnsavedLogEntries(msgEl, msgTextEl) {
+    var specialMsg = $(document.getElementById(msgEl));
+    toggleItemFlashing(specialMsg, false);
+    // still need to actually start the service
+    var logEntriesToSave = getAllUnsavedLogEntries();
+    var data = { logEntries: logEntriesToSave.toString() };
+    var url = "/Home/SaveRecentLogEntries";
+    JqueryAjaxRegular(
+            "POST",
+            url,
+            data,
+            function (returnData) { handleSaveAllUnsavedFollowup(returnData, msgEl, msgTextEl); },
+            null
+        );
+    // and then handle prompt to save
+
+}
+
+function handleSaveAllUnsavedFollowup(returnData, msgEl, msgTextEl) {
+    
+}
+
+function getAllUnsavedLogEntries() {
+    var list = $(document.getElementById(_logEntryListContainerId));
+    var unSavedLeClassLbl = "." + _leUnsavedClass;
+    var unSavedLes = list.find(unSavedLeClassLbl);
+    var logEntriesToSave = [];
+    for (var i = 0; i < unSavedLes.length; i++) {
+        var le = unSavedLes[i];
+        var leTextClassLbl = "." + _leTextClass;
+        var hiddenScoreClassLbl = "." + _hiddenScoreClass;
+        var text = $(le).find(leTextClassLbl)[0].innerHTML;
+        var score = $(le).find(hiddenScoreClassLbl)[0].innerHTML;
+        logEntriesToSave.push(score);
+        logEntriesToSave.push(text);
+    }
+    return logEntriesToSave;
+}
+
+function handleAustoSaveFailureSituation(returnData, msgEl, msgTextEl, msgText, newLogEntry) {
+    if (!$(newLogEntry).hasClass(_leUnsavedClass)) $(newLogEntry).addClass(_leUnsavedClass);
+    if (_leNotSavingAndIsKnown) return;
+    toggleAutoSavingKnownStatus();
+    displayAutoSaveFailedMsg(returnData, msgEl, msgTextEl, msgText);
+    var chckBtn = document.getElementById(_dbUpdateBtnId);
+    var startBtn = document.getElementById(_dbStartBtnId);
+    replaceBtnWithBtn(chckBtn, startBtn);
+}
+
+function toggleAutoSavingKnownStatus() {
+    _leNotSavingAndIsKnown = !_leNotSavingAndIsKnown;
+    var startBtn = $(document.getElementById(_dbStartBtnId));
+    toggleItemFlashing(startBtn, _leNotSavingAndIsKnown);
+}
+
+function toggleItemFlashing(item, condition) {
+    slowFlash(item);
+    var t = 4000;
+    if (condition) _startBtnFlashInterval = setInterval(function () { slowFlash(item); }, t);
+    if (!condition) {
+        clearInterval(_startBtnFlashInterval);
+        _startBtnFlashInterval = null;
+        item.stop(true,true);
+        stopFlash(item);
+    }
+}
+
+function stopFlash(el) {
+    el.fadeIn(1);
+}
+
+function slowFlash(el) {
+    var fadeSpeed = 1400;
+    if(_leNotSavingAndIsKnown) el.fadeOut(fadeSpeed);
+    el.fadeIn(fadeSpeed);
+}
+
+function replaceBtnWithBtn(removeBtn, showBtn) {
+    if (!$(removeBtn).hasClass(_noDisplayClass)) $(removeBtn).addClass(_noDisplayClass);
+    if ($(showBtn).hasClass(_noDisplayClass)) $(showBtn).removeClass(_noDisplayClass);
+}
+
+function displayAutoSaveFailedMsg(returnData, msgEl, msgTextEl, msgText) {
+    showResultMsg(msgEl, msgTextEl, msgText);
+}
+
+function displayAutoServiceStartedMsg(returnData, msgEl, msgTextEl, msgText) {
+    showResultMsg(msgEl, msgTextEl, msgText);
 }
 
 function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTextVal, nowUtcMs) {
@@ -72,11 +260,12 @@ function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTe
     var nextNumb = currentNumb + 1;
 
     CreateNextDayDateSectionIfNecessary();
-    ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEntryEl, currentNumb, nowUtcMs, logEntryTextVal);
+    var newLogEntry = ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEntryEl, currentNumb, nowUtcMs, logEntryTextVal);
     //SetValueOfAssociatedTimeStampElement(associatedTimeStampEl, nowUtcMs);
     // using isNew variable simply for readability
     var isNewEmptyLogEntry = true;
-    CreateLogEntryItem(isNewEmptyLogEntry, nextNumb);
+    var newEmptyLe = CreateLogEntryItem(isNewEmptyLogEntry, nextNumb);
+    return newLogEntry;
 }
 
 function CreateNextDayDateSectionIfNecessary() {
@@ -117,18 +306,7 @@ function ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEnt
     // Create replacement log entry element with submitted info
     // using isNew variable simply for readability
     var isNewEmptyLogEntry = true;
-    var replacementLogEntryItem = CreateLogEntryItem(!isNewEmptyLogEntry, parseInt(logEntryNumb), nowUtcMs, logEntryTextVal);
-
-    // -create the log entry text div
-    //      -apply class(es) to normalize div style
-    // -set innerHTML to the textVal
-    //var replacementLogEntryTextDiv = document.createElement("div");
-    //$(replacementLogEntryTextDiv).addClass(_lePartClass);
-    //$(replacementLogEntryTextDiv).addClass(_leTextClass);
-    //replacementLogEntryTextDiv.innerHTML = logEntryTextVal;
-    // -make new log entry text div a child of containingLogEntryEl
-    //$(containingLogEntryEl).removeClass(_newLogEntryClass);
-    //containingLogEntryEl.appendChild(replacementLogEntryItem);
+    return CreateLogEntryItem(!isNewEmptyLogEntry, parseInt(logEntryNumb), nowUtcMs, logEntryTextVal);
 }
 
 function CreateLogEntryItem(isNewEmptyLogEntry, logEntryNumb, nowUtcMs, logEntryTextVal) {
@@ -166,15 +344,26 @@ function CreateLogEntryItem(isNewEmptyLogEntry, logEntryNumb, nowUtcMs, logEntry
     $(newLeTextPart).addClass(_lePartClass);
     $(newLeTextPart).addClass(_leTextClass);
     if (!isNewEmptyLogEntry) newLeTextPart.innerHTML = logEntryTextVal;
+    //-add current milliseconds since epoch hidden div
+    //-this is a safety measure; if db goes down, it can be restarted
+    //  and then this hidden value will be used to save this recently created log entry
+    var hiddenLeTsUtcNowDiv = null;
+    if (!isNewEmptyLogEntry) {
+        hiddenLeTsUtcNowDiv = document.createElement("div");
+        $(hiddenLeTsUtcNowDiv).addClass(_hiddenScoreClass);
+        hiddenLeTsUtcNowDiv.innerHTML = nowUtcMs;
+    }
     //-add new ts,number, and text input elements as children to new entry div
     //-add new entry div as child to entry list
     newLogEntryEl.appendChild(newLeDateEl);
     newLogEntryEl.appendChild(newLeNumbEl);
     newLogEntryEl.appendChild(newLeTextPart);
+    if (hiddenLeTsUtcNowDiv !== null) newLogEntryEl.appendChild(hiddenLeTsUtcNowDiv);
     var parent = document.getElementById(_logEntryListContainerId);
     parent.appendChild(newLogEntryEl);
     // LAST give input el focus
-    if(isNewEmptyLogEntry) newLeTextPart.focus();
+    if (isNewEmptyLogEntry) newLeTextPart.focus();
+    return newLogEntryEl;
 }
 
 function SetValueOfAssociatedTimeStampElement(nowUtcMs) {
@@ -239,17 +428,107 @@ function FormatLogEntryNumber(n) {
     return leNumbStr + numbStr + " ";
 }
 
-function JqueryAjaxFireAndForget(url, data) {
-    JqueryAjaxRegular("POST", url, data, function (returnData) { return; });
+// SECTION END: log entry handling
+
+// SECTION START: db bar handling
+
+
+function getCurrentDbSvcStatus(dbStatusEl, ts) {
+    dbStatusEl.innerHTML = _dbStatusTextUpdating;
+    var url = "/Home/CheckBackgroundSvc";
+    JqueryAjaxRegular(
+        "GET",
+        url,
+        null,
+        function (returnData) { updateDisplayedBgSvcStatusWithCheckResult(returnData.toLowerCase() === "true", dbStatusEl, ts); },
+        null
+    );
 }
 
-function JqueryAjaxRegular(type, url, data, success) {
+function updateDisplayedBgSvcStatusWithCheckResult(svcIsRunning, statusEl, ts) {
+    var updateText = svcIsRunning ? _dbStatusTextRunning : _dbStatusTextStopped;
+    var fmtTime = fmtDateJustTime(ts);
+    statusEl.innerHTML = updateText + " (checked " + fmtTime + ")";
+    ensureDbBarSectionHasCorrectDimOrHighlight(svcIsRunning, statusEl);
+    flashThisThing($(statusEl));
+}
+
+function ensureDbBarSectionHasCorrectDimOrHighlight(svcIsRunning, statusEl) {
+    var hasDimClass = $(statusEl).hasClass(_dbBarDimClass);
+    if (svcIsRunning && !hasDimClass) $(statusEl).addClass(_dbBarDimClass);
+    if (!svcIsRunning && hasDimClass) $(statusEl).removeClass(_dbBarDimClass);
+}
+
+
+function saveAsPrepForQuit(msgEl, msgTextEl, statusEl) {
+    var url = "/Home/SaveAsPrepForQuit";
+    JqueryAjaxRegular(
+        "POST",
+        url,
+        null,
+        function (returnData) { showResultMsgInitiateStopSvc(returnData.toLowerCase() === "true", msgEl, msgTextEl, statusEl); },
+        null
+    );
+}
+
+function showResultMsgInitiateStopSvc(success, msgEl, msgTextEl, statusEl) {
+    var msgText = success ? _dbBarMsgSuccess : _dbBarMsgFail;
+    showResultMsg(msgEl, msgTextEl, msgText);
+    if (!success) return;
+    stopBackgroundSvc(statusEl);
+}
+
+function showResultMsg(msgEl, msgTextEl, msgText) {
+    var ts = new Date();
+    var fmtTime = fmtDateJustTime(ts);
+    msgText += " (" + fmtTime + ")";
+    msgTextEl.innerHTML = msgText;
+    if ($(msgEl).hasClass(_hideClass)) $(msgEl).removeClass(_hideClass);
+    flashThisThing($(msgEl));
+}
+
+function stopBackgroundSvc(statusEl) {
+    statusEl.innerHTML = _dbStatusTextUpdating;
+    var url = "/Home/StopBackgroundSvc";
+    JqueryAjaxRegular(
+        "POST",
+        url,
+        null,
+        function (returnData) { updateDisplayedBgSvcStatusWithCheckResult(returnData.toLowerCase() !== "true", statusEl, new Date()); },
+        null
+    );
+}
+
+function hideXclickedMsg(el) {
+    if (!$(el).hasClass(_hideClass)) $(el).addClass(_hideClass);
+}
+
+// SECTION END: db bar handling
+
+function flashThisThing(t) {
+    var fadeSpeed = 500;
+    t.fadeIn(fadeSpeed).fadeOut(fadeSpeed).fadeIn(fadeSpeed).fadeOut(fadeSpeed).fadeIn(fadeSpeed);
+}
+
+function JqueryAjaxFireAndForget(url, data) {
+    JqueryAjaxRegular("POST", url, data, function (returnData) { return; },null);
+}
+
+function JqueryAjaxRegular(type, url, data, success, fail) {
     $.ajax({
         type: type,
         url: url,
         data: data,
-        success: success
+        success: success,
+        error: fail
     });
+}
+
+function fmtDateJustTime(ts) {
+    var fmtTs = formatDate(ts);
+    var fmtTsHrMn = fmtTs.substr(11, 5);
+    var fmtTsampm = fmtTs.substr(20);
+    return fmtTsHrMn + " " + fmtTsampm;
 }
 
 function formatDate(date) {

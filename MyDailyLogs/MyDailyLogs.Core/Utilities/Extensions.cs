@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MyDailyLogs.Core.Configuration;
 
@@ -29,6 +31,12 @@ namespace MyDailyLogs.Core.Utilities
         public static byte[] ToUtf8EncodedByteArray(this string str)
         {
             return Encoding.UTF8.GetBytes(str);
+        }
+
+        public static string[] ConvertStringOfCommaSeparatedArrayToListOfString(this string str)
+        {
+            if (string.IsNullOrWhiteSpace(str)) return new string[0];
+            return str.IndexOf(",", StringComparison.OrdinalIgnoreCase) == -1 ? new [] { str } : str.Split(',');
         }
 
 

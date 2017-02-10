@@ -24,8 +24,8 @@ namespace MyDailyLogs.Controllers
 
 
             // Normal Get
-            var max = DateTime.Now;                                         // start with end of test data and move back
-            var min = max - new TimeSpan(0, 24, 0, 0);                       // get 2
+            var max = DateTime.Now + new TimeSpan(5, 24, 0, 0);                                         // start with end of test data and move back
+            var min = DateTime.Now - new TimeSpan(5, 24, 0, 0);                       // get 2
 
             var logEntryVms = _logEntrySvc.GetLogEntries(new Tuple<DateTime, DateTime>(min, max));
             return View(logEntryVms);
@@ -38,6 +38,50 @@ namespace MyDailyLogs.Controllers
         public void SaveNewLogEntry(string timeStamp, string logEntryText)
         {
             _logEntrySvc.SaveLogEntry(timeStamp,logEntryText);
+        }
+
+        //
+        // POST: /Home/SaveRecentLogEntries
+
+        [HttpPost]
+        public bool SaveRecentLogEntries(string logEntries)
+        {
+            return _logEntrySvc.SaveRecentLogEntries(logEntries);
+        }
+
+        //
+        // POST: /Home/SaveAsPrepForQuit
+
+        [HttpPost]
+        public bool SaveAsPrepForQuit()
+        {
+            return _logEntrySvc.SaveAsPrepForQuit();
+        }
+
+        //
+        // POST: /Home/StopBackgroundSvc
+
+        [HttpPost]
+        public bool StopBackgroundSvc()
+        {
+            return _logEntrySvc.StopBackgroundSvc();
+        }
+
+        //
+        // POST: /Home/StartBackgroundSvc
+
+        [HttpPost]
+        public bool StartBackgroundSvc()
+        {
+            return _logEntrySvc.StartBackgroundSvc();
+        }
+
+        //
+        // GET: /Home/CheckBackgroundSvc
+
+        public bool CheckBackgroundSvc()
+        {
+            return _logEntrySvc.CheckIfPersistenceBackgroundSvcIsRunning();
         }
 
         //public void
