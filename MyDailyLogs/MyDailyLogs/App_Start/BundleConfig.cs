@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace MyDailyLogs
 {
@@ -29,8 +28,9 @@ namespace MyDailyLogs
                 "~/Scripts/Common/myDailyLogEntries.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
                       "~/Content/myDailyLogs.css"));
         }

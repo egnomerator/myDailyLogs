@@ -19,19 +19,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2012 16:23:58</publishTime>
     </File>
     <File Include="bin/MyDailyLogs.Core.dll">
-      <publishTime>02/15/2017 03:22:03</publishTime>
+      <publishTime>02/15/2017 16:15:18</publishTime>
     </File>
     <File Include="bin/MyDailyLogs.DataAccess.dll">
-      <publishTime>02/15/2017 03:22:03</publishTime>
+      <publishTime>02/15/2017 16:15:18</publishTime>
     </File>
     <File Include="bin/MyDailyLogs.dll">
-      <publishTime>02/15/2017 03:29:06</publishTime>
+      <publishTime>02/15/2017 16:15:21</publishTime>
     </File>
     <File Include="bin/MyDailyLogs.Services.dll">
-      <publishTime>02/15/2017 03:22:04</publishTime>
+      <publishTime>02/15/2017 16:15:18</publishTime>
     </File>
     <File Include="bin/MyDailyLogs.ViewModels.dll">
-      <publishTime>02/15/2017 03:22:03</publishTime>
+      <publishTime>02/15/2017 16:15:18</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/03/2014 21:33:56</publishTime>
@@ -193,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/15/2017 03:13:30</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/15/2017 00:38:35</publishTime>
+      <publishTime>02/15/2017 14:35:53</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/03/2017 14:37:14</publishTime>
@@ -202,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/15/2017 02:10:40</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/15/2017 03:14:00</publishTime>
+      <publishTime>02/15/2017 16:13:53</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/03/2017 14:37:14</publishTime>
@@ -211,7 +211,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/03/2017 14:37:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/15/2017 03:29:07</publishTime>
+      <publishTime>02/15/2017 16:15:53</publishTime>
     </File>
   </ItemGroup>
 </Project>
