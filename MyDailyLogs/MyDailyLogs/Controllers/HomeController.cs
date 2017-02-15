@@ -23,10 +23,9 @@ namespace MyDailyLogs.Controllers
             //var min = max - new TimeSpan(0, 3, 0, 0);                     // get past 3 hours
             //var min = max - new TimeSpan(0, 1, 0, 0);                     // get past hour
 
-
-            // Normal Get
-            var max = DateTime.Now + new TimeSpan(5, 24, 0, 0);                                         // start with end of test data and move back
-            var min = DateTime.Now - new TimeSpan(5, 24, 0, 0);                       // get 2
+            // Default Range
+            var max = DateTime.Now;
+            var min = max - new TimeSpan(5, 0, 0, 0);
 
             var logEntryVms = _logEntrySvc.GetLogEntries(new Tuple<DateTime, DateTime>(min, max));
             return View(logEntryVms);

@@ -32,7 +32,16 @@
         </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - @Constants.WebAppDisplayName</p>
+            @{
+                // getting version parts
+                //      -manually using VS built-in version formatting differently: as major.minor.revision
+                var version = ViewContext.Controller.GetType().Assembly.GetName().Version;
+                var vMajor = version.Major;
+                var vMinor = version.Minor;
+                var vRevision = version.Build;
+                var vFmtMmr = $"{vMajor}.{vMinor}.{vRevision}";
+            }
+            <p>&copy; @DateTime.Now.Year - @Constants.WebAppDisplayName v.@vFmtMmr</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/modernizr")

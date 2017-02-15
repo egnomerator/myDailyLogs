@@ -121,6 +121,8 @@ namespace MyDailyLogs.Services
 
         private static byte[][] TrimResultsToMax(byte[][] logEntries)
         {
+            // This check is a safety in case the Constants.MaxLogEntriesServed value is ever changed to an odd number
+            // -it must be an even number, because of the way the data is retrieved from the database (see notes in Constants file)
             var max = Constants.MaxLogEntriesServed%2 == 0 ? Constants.MaxLogEntriesServed : Constants.MaxLogEntriesServed + 1;
             // 2 array members per logEntry: 1) timestamp 2) text; So if we have a max of n logEntries, we need n*2 array members
             max = max*2;
