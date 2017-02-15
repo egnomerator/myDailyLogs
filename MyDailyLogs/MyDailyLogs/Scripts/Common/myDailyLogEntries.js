@@ -1,4 +1,79 @@
-﻿var _leNotSavingAndIsKnown = "";
+﻿var _common = common();
+var _urlBuilder = urlBuilder();
+
+var _controllerHome = _common.constants.controllerHome;
+var _actionCheckBackgroundSvc = _common.constants.actionCheckBackgroundSvc;
+var _actionSaveAsPrepForQuit = _common.constants.actionSaveAsPrepForQuit;
+var _actionSaveRecentLogEntries = _common.constants.actionSaveRecentLogEntries;
+var _actionStartBackgroundSvc = _common.constants.actionStartBackgroundSvc;
+var _actionStopBackgroundSvc = _common.constants.actionStopBackgroundSvc;
+
+var _urlHomeCkBgSvc = _urlBuilder.bldUrl(_controllerHome, _actionCheckBackgroundSvc);
+var _urlHomeSaveQuit = _urlBuilder.bldUrl(_controllerHome, _actionSaveAsPrepForQuit);
+var _urlHomeSaveRecentLogEntries = _urlBuilder.bldUrl(_controllerHome, _actionSaveRecentLogEntries);
+var _urlHomeStartBgSvc = _urlBuilder.bldUrl(_controllerHome, _actionStartBackgroundSvc);
+var _urlHomeStopBgSvc = _urlBuilder.bldUrl(_controllerHome, _actionStopBackgroundSvc);
+
+var _logEntryStrArraySeparator = "";
+var _dbInfoBarId = "";
+var _dbInfoBarClass = "";
+var _dbInfoBarLblId = "";
+var _dbInfoBarLblClass = "";
+var _dbInfoBarSpecialMsgAreaId = "";
+var _dbInfoBarSpecialMsgAreaClass = "";
+var _dbStatusAreaId = "";
+var _dbStatusAreaClass = "";
+var _dbStatusAreaLblId = "";
+var _dbStatusAreaLblClass = "";
+var _dbStatusValueId = "";
+var _dbStatusValueClass = "";
+var _dbStatusValueInrHtml = "";
+var _dbLastCheckValueId = "";
+var _dbLastCheckValueClass = "";
+var _dbBarBtnClass = "";
+var _dbUpdateBtnId = "";
+var _dbUpdateBtnClass = "";
+var _dbUpdateBtnValue = "";
+var _dbStartBtnId = "";
+var _dbStartBtnClass = "";
+var _dbStartBtnValue = "";
+var _dbSyncBtnId = "";
+var _dbSyncBtnClass = "";
+var _dbSyncBtnValue = "";
+var _dbSaveBtnClass = "";
+var _dbSaveBtnValue = "";
+var _dbSaveAndQuitAreaId = "";
+var _dbSaveAndQuitAreaClass = "";
+var _dbSaveAndQuitLblId = "";
+var _dbSaveAndQuitLblClass = "";
+var _dbSaveBtnId = "";
+var _dbBarDimClass = "";
+var _dbBarMsgId = "";
+var _dbBarMsgClass = "";
+var _dbBarMsgTextId = "";
+var _dbBarMsgTextClass = "";
+var _dbBarMsgSaveQuitSuccess = "";
+var _dbBarMsgSyncSuccess = "";
+var _dbBarMsgSaveQuitFail = "";
+var _dbBarMsgSyncFail = "";
+var _dbBarMsgAutoSaveFailed = "";
+var _dbBarMsgServiceStarted = "";
+var _dbBarMsgServiceStartFailed = "";
+var _dbBarMsgXId = "";
+var _dbBarMsgXclass = "";
+var _hideClass = "";
+var _noDisplayClass = "";
+var _leUnsavedClass = "";
+var _dbStatusTextUpdating = "";
+var _dbStatusTextRunning = "";
+var _dbStatusTextStopped = "";
+var _dbStatusUpdateInterval = "";
+var _dbInfoBarTitle = "";
+var _dbStatusAreaTitle = "";
+var _dbUpdateBtnTitle = "";
+var _dbStartBtnTitle = "";
+var _dbSyncBtnTitle = "";
+var _dbSaveBtnTitle = "";
 var _logEntryListContainerId = "";
 var _maxNumbDivDigitWidth = "";
 var _leDayDateClass = "";
@@ -8,35 +83,77 @@ var _leNumbClass = "";
 var _leDateClass = "";
 var _leTextClass = "";
 var _hiddenScoreClass = "";
-var _dbStatusTextUpdating = "";
-var _dbStatusTextRunning = "";
-var _dbStatusTextStopped = "";
-var _dbUpdateBtnId = "";
-var _dbUpdateBtnClass = "";
-var _dbUpdateBtnValue = "";
-var _dbUpdateBtnTitle = "";
-var _dbStartBtnId = "";
-var _dbStartBtnClass = "";
-var _dbStartBtnValue = "";
-var _dbStartBtnTitle = "";
-var _dbBarMsgSuccess = "";
-var _dbBarMsgServiceStarted = "";
-var _dbBarMsgFail = "";
-var _dbBarMsgAutoSaveFailed = "";
-var _dbBarDimClass = "";
-var _hideClass = "";
-var _noDisplayClass = "";
-var _leUnsavedClass = "";
 var _focusLineClass = "";
+var _newLogEntryId = "";
 var _newLogEntryClass = "";
 var _newLogEntryTsEllipsis = "";
-var _newLogEntryTextInputPlaceholder = "";
 var _newLogEntryTextInputId = "";
 var _newLogEntryTextInputName = "";
-var _startBtnFlashInterval = null;
+var _newLogEntryTextInputPlaceholder = "";
+var _startBtnFlashInterval = "";
+var _leNotSavingAndIsKnown = false;
 
 function UpdateLogEntryElementAttributeVariables(
-    leNotSavingAndIsKnown,
+    logEntryStrArraySeparator,
+    dbInfoBarId,
+    dbInfoBarClass,
+    dbInfoBarLblId,
+    dbInfoBarLblClass,
+    dbInfoBarSpecialMsgAreaId,
+    dbInfoBarSpecialMsgAreaClass,
+    dbStatusAreaId,
+    dbStatusAreaClass,
+    dbStatusAreaLblId,
+    dbStatusAreaLblClass,
+    dbStatusValueId,
+    dbStatusValueClass,
+    dbStatusValueInrHtml,
+    dbLastCheckValueId,
+    dbLastCheckValueClass,
+    dbBarBtnClass,
+    dbUpdateBtnId,
+    dbUpdateBtnClass,
+    dbUpdateBtnValue,
+    dbStartBtnId,
+    dbStartBtnClass,
+    dbStartBtnValue,
+    dbSyncBtnId,
+    dbSyncBtnClass,
+    dbSyncBtnValue,
+    dbSaveBtnClass,
+    dbSaveBtnValue,
+    dbSaveAndQuitAreaId,
+    dbSaveAndQuitAreaClass,
+    dbSaveAndQuitLblId,
+    dbSaveAndQuitLblClass,
+    dbSaveBtnId,
+    dbBarDimClass,
+    dbBarMsgId,
+    dbBarMsgClass,
+    dbBarMsgTextId,
+    dbBarMsgTextClass,
+    dbBarMsgSaveQuitSuccess,
+    dbBarMsgSyncSuccess,
+    dbBarMsgSaveQuitFail,
+    dbBarMsgSyncFail,
+    dbBarMsgAutoSaveFailed,
+    dbBarMsgServiceStarted,
+    dbBarMsgServiceStartFailed,
+    dbBarMsgXId,
+    dbBarMsgXclass,
+    hideClass,
+    noDisplayClass,
+    leUnsavedClass,
+    dbStatusTextUpdating,
+    dbStatusTextRunning,
+    dbStatusTextStopped,
+    dbStatusUpdateInterval,
+    dbInfoBarTitle,
+    dbStatusAreaTitle,
+    dbUpdateBtnTitle,
+    dbStartBtnTitle,
+    dbSyncBtnTitle,
+    dbSaveBtnTitle,
     logEntryListContainerId,
     maxNumbDivDigitWidth,
     leDayDateClass,
@@ -46,33 +163,74 @@ function UpdateLogEntryElementAttributeVariables(
     leDateClass,
     leTextClass,
     hiddenScoreClass,
-    dbStatusTextUpdating,
-    dbStatusTextRunning,
-    dbStatusTextStopped,
-    dbUpdateBtnId,
-    dbUpdateBtnClass,
-    dbUpdateBtnValue,
-    dbUpdateBtnTitle,
-    dbStartBtnId,
-    dbStartBtnClass,
-    dbStartBtnValue,
-    dbStartBtnTitle,
-    dbBarDimClass,
-    hideClass,
-    noDisplayClass,
-    leUnsavedClass,
-    dbBarMsgSuccess,
-    dbBarMsgServiceStarted,
-    dbBarMsgFail,
-    dbBarMsgAutoSaveFailed,
     focusLineClass,
+    newLogEntryId,
     newLogEntryClass,
     newLogEntryTsEllipsis,
-    newLogEntryTextInputPlaceholder,
     newLogEntryTextInputId,
-    newLogEntryTextInputName
+    newLogEntryTextInputName,
+    newLogEntryTextInputPlaceholder
 ) {
-    _leNotSavingAndIsKnown = leNotSavingAndIsKnown;
+    _logEntryStrArraySeparator = logEntryStrArraySeparator;
+    _dbInfoBarId = dbInfoBarId;
+    _dbInfoBarClass = dbInfoBarClass;
+    _dbInfoBarLblId = dbInfoBarLblId;
+    _dbInfoBarLblClass = dbInfoBarLblClass;
+    _dbInfoBarSpecialMsgAreaId = dbInfoBarSpecialMsgAreaId;
+    _dbInfoBarSpecialMsgAreaClass = dbInfoBarSpecialMsgAreaClass;
+    _dbStatusAreaId = dbStatusAreaId;
+    _dbStatusAreaClass = dbStatusAreaClass;
+    _dbStatusAreaLblId = dbStatusAreaLblId;
+    _dbStatusAreaLblClass = dbStatusAreaLblClass;
+    _dbStatusValueId = dbStatusValueId;
+    _dbStatusValueClass = dbStatusValueClass;
+    _dbStatusValueInrHtml = dbStatusValueInrHtml;
+    _dbLastCheckValueId = dbLastCheckValueId;
+    _dbLastCheckValueClass = dbLastCheckValueClass;
+    _dbBarBtnClass = dbBarBtnClass;
+    _dbUpdateBtnId = dbUpdateBtnId;
+    _dbUpdateBtnClass = dbUpdateBtnClass;
+    _dbUpdateBtnValue = dbUpdateBtnValue;
+    _dbStartBtnId = dbStartBtnId;
+    _dbStartBtnClass = dbStartBtnClass;
+    _dbStartBtnValue = dbStartBtnValue;
+    _dbSyncBtnId = dbSyncBtnId;
+    _dbSyncBtnClass = dbSyncBtnClass;
+    _dbSyncBtnValue = dbSyncBtnValue;
+    _dbSaveBtnClass = dbSaveBtnClass;
+    _dbSaveBtnValue = dbSaveBtnValue;
+    _dbSaveAndQuitAreaId = dbSaveAndQuitAreaId;
+    _dbSaveAndQuitAreaClass = dbSaveAndQuitAreaClass;
+    _dbSaveAndQuitLblId = dbSaveAndQuitLblId;
+    _dbSaveAndQuitLblClass = dbSaveAndQuitLblClass;
+    _dbSaveBtnId = dbSaveBtnId;
+    _dbBarDimClass = dbBarDimClass;
+    _dbBarMsgId = dbBarMsgId;
+    _dbBarMsgClass = dbBarMsgClass;
+    _dbBarMsgTextId = dbBarMsgTextId;
+    _dbBarMsgTextClass = dbBarMsgTextClass;
+    _dbBarMsgSaveQuitSuccess = dbBarMsgSaveQuitSuccess;
+    _dbBarMsgSyncSuccess = dbBarMsgSyncSuccess;
+    _dbBarMsgSaveQuitFail = dbBarMsgSaveQuitFail;
+    _dbBarMsgSyncFail = dbBarMsgSyncFail;
+    _dbBarMsgAutoSaveFailed = dbBarMsgAutoSaveFailed;
+    _dbBarMsgServiceStarted = dbBarMsgServiceStarted;
+    _dbBarMsgServiceStartFailed = dbBarMsgServiceStartFailed;
+    _dbBarMsgXId = dbBarMsgXId;
+    _dbBarMsgXclass = dbBarMsgXclass;
+    _hideClass = hideClass;
+    _noDisplayClass = noDisplayClass;
+    _leUnsavedClass = leUnsavedClass;
+    _dbStatusTextUpdating = dbStatusTextUpdating;
+    _dbStatusTextRunning = dbStatusTextRunning;
+    _dbStatusTextStopped = dbStatusTextStopped;
+    _dbStatusUpdateInterval = dbStatusUpdateInterval;
+    _dbInfoBarTitle = dbInfoBarTitle;
+    _dbStatusAreaTitle = dbStatusAreaTitle;
+    _dbUpdateBtnTitle = dbUpdateBtnTitle;
+    _dbStartBtnTitle = dbStartBtnTitle;
+    _dbSyncBtnTitle = dbSyncBtnTitle;
+    _dbSaveBtnTitle = dbSaveBtnTitle;
     _logEntryListContainerId = logEntryListContainerId;
     _maxNumbDivDigitWidth = maxNumbDivDigitWidth;
     _leDayDateClass = leDayDateClass;
@@ -82,102 +240,105 @@ function UpdateLogEntryElementAttributeVariables(
     _leDateClass = leDateClass;
     _leTextClass = leTextClass;
     _hiddenScoreClass = hiddenScoreClass;
-    _dbStatusTextUpdating = dbStatusTextUpdating;
-    _dbStatusTextRunning = dbStatusTextRunning;
-    _dbStatusTextStopped = dbStatusTextStopped;
-    _dbUpdateBtnId = dbUpdateBtnId;
-    _dbUpdateBtnClass = dbUpdateBtnClass;
-    _dbUpdateBtnValue = dbUpdateBtnValue;
-    _dbUpdateBtnTitle = dbUpdateBtnTitle;
-    _dbStartBtnId = dbStartBtnId;
-    _dbStartBtnClass = dbStartBtnClass;
-    _dbStartBtnValue = dbStartBtnValue;
-    _dbStartBtnTitle = dbStartBtnTitle;
-    _dbBarDimClass = dbBarDimClass;
-    _hideClass = hideClass;
-    _noDisplayClass = noDisplayClass;
-    _leUnsavedClass = leUnsavedClass;
-    _dbBarMsgSuccess = dbBarMsgSuccess;
-    _dbBarMsgServiceStarted = dbBarMsgServiceStarted;
-    _dbBarMsgFail = dbBarMsgFail;
-    _dbBarMsgAutoSaveFailed = dbBarMsgAutoSaveFailed;
     _focusLineClass = focusLineClass;
+    _newLogEntryId = newLogEntryId;
     _newLogEntryClass = newLogEntryClass;
     _newLogEntryTsEllipsis = newLogEntryTsEllipsis;
-    _newLogEntryTextInputPlaceholder = newLogEntryTextInputPlaceholder;
     _newLogEntryTextInputId = newLogEntryTextInputId;
     _newLogEntryTextInputName = newLogEntryTextInputName;
+    _newLogEntryTextInputPlaceholder = newLogEntryTextInputPlaceholder;
 }
-
 
 // SECTION START: log entry handling
 
 function LogEntryTextIsValid(text) {
     // any Redis security vulnerabilities? Research.
-    return text !== undefined && text !== null && text !== "";
+    return text !== undefined && text !== null && text !== "" && text.trim() !== "";
 }
 
-function SaveNewLogEntryAndUpdateUI(leTextInputEl, logEntryTextVal, nowUtcMs, msgEl, msgTextEl) {
-    var newLogEntry = UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTextVal, nowUtcMs);
-    SaveNewLogEntry(nowUtcMs, logEntryTextVal, msgEl, msgTextEl, _dbBarMsgAutoSaveFailed, newLogEntry);
+function SaveNewLogEntryAndUpdateUI(logEntryTextVal, nowUtcMs) {
+    var newLogEntry = UpdateUIwithEntryInfoAndCreateNewLogEntryItem(logEntryTextVal, nowUtcMs);
+    SaveNewLogEntry(logEntryTextVal, nowUtcMs, newLogEntry);
 }
 
-function SaveNewLogEntry(nowUtcMs, logEntryTextVal, msgEl, msgTextEl, msgText, newLogEntry) {
-    var url = "/Home/SaveNewLogEntry";
-    JqueryAjaxRegular(
-            "POST",
-            url,
-            { timeStamp: nowUtcMs, logEntryText: logEntryTextVal },
-            null,
-            function (returnData) { handleAustoSaveFailureSituation(returnData, msgEl, msgTextEl, msgText, newLogEntry); }
-        );
-}
-
-function handleStartBtnClick(msgEl, msgTextEl) {
-    toggleAutoSavingKnownStatus();
-    // still need to actually start the service
-    var url = "/Home/StartBackgroundSvc";
-    JqueryAjaxRegular(
-            "POST",
-            url,
-            null,
-            function (returnData) { handleServiceStartedFollowup(returnData, msgEl, msgTextEl); },
-            null
-        );
-    // and then handle prompt to save
-
-}
-
-function handleServiceStartedFollowup(success, msgEl, msgTextEl) {
-    var msgText = success ? _dbBarMsgServiceStarted : "Something went wrong :( idk";
-    showResultMsg(msgEl, msgTextEl, msgText);
-    var chckBtn = document.getElementById(_dbUpdateBtnId);
-    var startBtn = document.getElementById(_dbStartBtnId);
-    replaceBtnWithBtn(startBtn, chckBtn);
-    var specialMsg = $(document.getElementById(msgEl));
-    toggleItemFlashing(specialMsg, true);
-}
-
-function saveAllUnsavedLogEntries(msgEl, msgTextEl) {
-    var specialMsg = $(document.getElementById(msgEl));
-    toggleItemFlashing(specialMsg, false);
-    // still need to actually start the service
-    var logEntriesToSave = getAllUnsavedLogEntries();
-    var data = { logEntries: logEntriesToSave.toString() };
-    var url = "/Home/SaveRecentLogEntries";
+function SaveNewLogEntry(logEntryTextVal, nowUtcMs, newLogEntry) {
+    var url = _urlHomeSaveRecentLogEntries;
+    var logEntriesToSave = [];
+    logEntriesToSave.push(encodeURIComponent(nowUtcMs));
+    logEntriesToSave.push(encodeURIComponent(logEntryTextVal));
+    var leJoinedByUniqueSeparator = logEntriesToSave.join(_logEntryStrArraySeparator);
+    var data = { logEntries: leJoinedByUniqueSeparator };
     JqueryAjaxRegular(
             "POST",
             url,
             data,
-            function (returnData) { handleSaveAllUnsavedFollowup(returnData, msgEl, msgTextEl); },
+            function (returnData) { handleAutoSaveFailureSituation(returnData, _dbBarMsgAutoSaveFailed, newLogEntry); },
             null
         );
-    // and then handle prompt to save
-
 }
 
-function handleSaveAllUnsavedFollowup(returnData, msgEl, msgTextEl) {
-    
+function handleStartBtnClick() {
+    var listContainer = $(document.getElementById(_logEntryListContainerId));
+    var redClassLbl = "." + _leUnsavedClass;
+    var redEntries = listContainer.find(redClassLbl);
+    var numbRedLe = redEntries.length;
+    if(numbRedLe > 0) toggleAutoSavingKnownStatus();
+    var url = _urlHomeStartBgSvc;
+    JqueryAjaxRegular(
+            "POST",
+            url,
+            null,
+            function (returnData) { handleServiceStartedFollowup(returnData, numbRedLe); },
+            null
+        );
+}
+
+function handleServiceStartedFollowup(success, numbRedLe) {
+    getCurrentDbSvcStatus();
+    if (numbRedLe < 1) {
+        showCheckBtn();
+        return;
+    }
+    var msgText = success ? _dbBarMsgServiceStarted : _dbBarMsgServiceStartFailed;
+    showResultMsg(msgText);
+    if (!success) return;
+    showSyncBtn();
+    // this variable for readability
+    var turnOn = true;
+    var syncBtn = document.getElementById(_dbSyncBtnId);
+    toggleItemFlashing($(syncBtn), turnOn);
+}
+
+function saveAllUnsavedLogEntries() {
+    var syncBtn = $(document.getElementById(_dbSyncBtnId));
+    // this variable for readability
+    var turnOn = false;
+    toggleItemFlashing(syncBtn, turnOn);
+    var logEntriesToSave = getAllUnsavedLogEntries();
+    var leJoinedByUniqueSeparator = logEntriesToSave.join(_logEntryStrArraySeparator);
+    var data = { logEntries: leJoinedByUniqueSeparator };
+    var url = _urlHomeSaveRecentLogEntries;
+    JqueryAjaxRegular(
+            "POST",
+            url,
+            data,
+            function (returnData) { handleSaveAllUnsavedFollowup(returnData); },
+            null
+        );
+}
+
+function handleSaveAllUnsavedFollowup(returnData) {
+    var msgText = returnData.toLowerCase() === "true" ? _dbBarMsgSyncSuccess : _dbBarMsgSyncFail;
+    showResultMsg(msgText);
+    showCheckBtn();
+    // take red class off the red entries
+    var listContainer = $(document.getElementById(_logEntryListContainerId));
+    var redClassLbl = "." + _leUnsavedClass;
+    var redEntries = listContainer.find(redClassLbl);
+    for (var i = 0; i < redEntries.length; i++) {
+        var currentRedEntry = $(redEntries[i]);
+        if (currentRedEntry.hasClass(_leUnsavedClass)) currentRedEntry.removeClass(_leUnsavedClass);
+    }
 }
 
 function getAllUnsavedLogEntries() {
@@ -189,22 +350,21 @@ function getAllUnsavedLogEntries() {
         var le = unSavedLes[i];
         var leTextClassLbl = "." + _leTextClass;
         var hiddenScoreClassLbl = "." + _hiddenScoreClass;
-        var text = $(le).find(leTextClassLbl)[0].innerHTML;
-        var score = $(le).find(hiddenScoreClassLbl)[0].innerHTML;
-        logEntriesToSave.push(score);
-        logEntriesToSave.push(text);
+        var text = $($(le).find(leTextClassLbl)[0]).text();
+        var score = $($(le).find(hiddenScoreClassLbl)[0]).text();
+        logEntriesToSave.push(encodeURIComponent(score));
+        logEntriesToSave.push(encodeURIComponent(text));
     }
     return logEntriesToSave;
 }
 
-function handleAustoSaveFailureSituation(returnData, msgEl, msgTextEl, msgText, newLogEntry) {
+function handleAutoSaveFailureSituation(returnData, msgText, newLogEntry) {
+    if (returnData.toLowerCase() === "true") return;
     if (!$(newLogEntry).hasClass(_leUnsavedClass)) $(newLogEntry).addClass(_leUnsavedClass);
     if (_leNotSavingAndIsKnown) return;
     toggleAutoSavingKnownStatus();
-    displayAutoSaveFailedMsg(returnData, msgEl, msgTextEl, msgText);
-    var chckBtn = document.getElementById(_dbUpdateBtnId);
-    var startBtn = document.getElementById(_dbStartBtnId);
-    replaceBtnWithBtn(chckBtn, startBtn);
+    displayAutoSaveFailedMsg(returnData, msgText);
+    showStartBtn();
 }
 
 function toggleAutoSavingKnownStatus() {
@@ -213,11 +373,10 @@ function toggleAutoSavingKnownStatus() {
     toggleItemFlashing(startBtn, _leNotSavingAndIsKnown);
 }
 
-function toggleItemFlashing(item, condition) {
-    slowFlash(item);
+function toggleItemFlashing(item, turnOn) {
     var t = 4000;
-    if (condition) _startBtnFlashInterval = setInterval(function () { slowFlash(item); }, t);
-    if (!condition) {
+    if (turnOn) _startBtnFlashInterval = setInterval(function () { slowFlash(item, turnOn); }, t);
+    if (!turnOn) {
         clearInterval(_startBtnFlashInterval);
         _startBtnFlashInterval = null;
         item.stop(true,true);
@@ -229,30 +388,48 @@ function stopFlash(el) {
     el.fadeIn(1);
 }
 
-function slowFlash(el) {
+function slowFlash(el, turnOn) {
     var fadeSpeed = 1400;
-    if(_leNotSavingAndIsKnown) el.fadeOut(fadeSpeed);
+    if (turnOn) el.fadeOut(fadeSpeed);
     el.fadeIn(fadeSpeed);
 }
 
-function replaceBtnWithBtn(removeBtn, showBtn) {
-    if (!$(removeBtn).hasClass(_noDisplayClass)) $(removeBtn).addClass(_noDisplayClass);
+function showCheckBtn() {
+    var chckBtn = document.getElementById(_dbUpdateBtnId);
+    var startBtn = document.getElementById(_dbStartBtnId);
+    var syncBtn = document.getElementById(_dbSyncBtnId);
+    replaceBtnWithBtn(chckBtn, startBtn, syncBtn);
+}
+function showStartBtn() {
+    var chckBtn = document.getElementById(_dbUpdateBtnId);
+    var startBtn = document.getElementById(_dbStartBtnId);
+    var syncBtn = document.getElementById(_dbSyncBtnId);
+    replaceBtnWithBtn(startBtn, chckBtn, syncBtn);
+}
+function showSyncBtn() {
+    var chckBtn = document.getElementById(_dbUpdateBtnId);
+    var startBtn = document.getElementById(_dbStartBtnId);
+    var syncBtn = document.getElementById(_dbSyncBtnId);
+    replaceBtnWithBtn(syncBtn, startBtn, chckBtn);
+}
+
+function replaceBtnWithBtn(showBtn, removeBtn1, removeBtn2) {
+    if (!$(removeBtn1).hasClass(_noDisplayClass)) $(removeBtn1).addClass(_noDisplayClass);
+    if (!$(removeBtn2).hasClass(_noDisplayClass)) $(removeBtn2).addClass(_noDisplayClass);
     if ($(showBtn).hasClass(_noDisplayClass)) $(showBtn).removeClass(_noDisplayClass);
 }
 
-function displayAutoSaveFailedMsg(returnData, msgEl, msgTextEl, msgText) {
-    showResultMsg(msgEl, msgTextEl, msgText);
+function displayAutoSaveFailedMsg(returnData, msgText) {
+    showResultMsg(msgText);
 }
 
-function displayAutoServiceStartedMsg(returnData, msgEl, msgTextEl, msgText) {
-    showResultMsg(msgEl, msgTextEl, msgText);
+function displayAutoServiceStartedMsg(returnData, msgText) {
+    showResultMsg(msgText);
 }
 
-function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTextVal, nowUtcMs) {
-    var leClassLbl = "." + _logEntryClass;
-    var containingLogEntryEl = leTextInputEl.closest(leClassLbl);
-    var leDateClassLbl = "." + _leDateClass;
-    var associatedTimeStampEl = $(containingLogEntryEl).find(leDateClassLbl);
+function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(logEntryTextVal, nowUtcMs) {
+    var leTextInputEl = document.getElementById(_newLogEntryTextInputId);
+    var containingLogEntryEl = document.getElementById(_newLogEntryId);
     var leNumbClassLbl = "." + _leNumbClass;
     var associatedNumberEl = $(containingLogEntryEl).find(leNumbClassLbl);
     var associatedNumberElVal = associatedNumberEl[0].innerHTML;
@@ -261,8 +438,6 @@ function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(leTextInputEl, logEntryTe
 
     CreateNextDayDateSectionIfNecessary();
     var newLogEntry = ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEntryEl, currentNumb, nowUtcMs, logEntryTextVal);
-    //SetValueOfAssociatedTimeStampElement(associatedTimeStampEl, nowUtcMs);
-    // using isNew variable simply for readability
     var isNewEmptyLogEntry = true;
     var newEmptyLe = CreateLogEntryItem(isNewEmptyLogEntry, nextNumb);
     return newLogEntry;
@@ -285,15 +460,13 @@ function CreateNextDayDateSectionIfNecessary() {
 }
 
 function InsertNewLeDayDateElement(beforeNode) {
-    // -create the div
-    //      -apply class
-    // -set innerHTML to the new date val
+    // -create the date section div
     var newDayDateEl = document.createElement("div");
     $(newDayDateEl).addClass(_leDayDateClass);
     var initialDate = new Date();
     var fmtDate = formatDate(initialDate);
     newDayDateEl.innerHTML = fmtDate.substr(0, 10);
-    // -make new date el child of container
+    // -make new date section div a child of container
     var parent = document.getElementById(_logEntryListContainerId);
     parent.insertBefore(newDayDateEl, beforeNode);
 }
@@ -304,35 +477,30 @@ function ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEnt
     // Delete containing log entry element
     containingLogEntryEl.parentNode.removeChild(containingLogEntryEl);
     // Create replacement log entry element with submitted info
-    // using isNew variable simply for readability
+    // this variable for readability
     var isNewEmptyLogEntry = true;
     return CreateLogEntryItem(!isNewEmptyLogEntry, parseInt(logEntryNumb), nowUtcMs, logEntryTextVal);
 }
 
 function CreateLogEntryItem(isNewEmptyLogEntry, logEntryNumb, nowUtcMs, logEntryTextVal) {
     //-create new entry div
-    //      -apply classes
     var newLogEntryEl = document.createElement("div");
     $(newLogEntryEl).addClass(_logEntryClass);
-    if (isNewEmptyLogEntry) {$(newLogEntryEl).addClass(_newLogEntryClass);}
-    //-create new ts div
-    //      -apply classes
-    //-set innerHTML to ellipsis val
+    if (isNewEmptyLogEntry) {
+        newLogEntryEl.id = _newLogEntryId;
+        $(newLogEntryEl).addClass(_newLogEntryClass);
+    }
+    //-create new timestamp div
     var newLeDateEl = document.createElement("div");
     $(newLeDateEl).addClass(_lePartClass);
     $(newLeDateEl).addClass(_leDateClass);
     newLeDateEl.innerHTML = isNewEmptyLogEntry ? _newLogEntryTsEllipsis : SetValueOfAssociatedTimeStampElement(nowUtcMs);
-    //-create new number div
-    //      -apply classes
-    //-set innerHTML to number val
+    //-create new line number div
     var newLeNumbEl = document.createElement("div");
     $(newLeNumbEl).addClass(_lePartClass);
     $(newLeNumbEl).addClass(_leNumbClass);
     newLeNumbEl.innerHTML = FormatLogEntryNumber(logEntryNumb);
     //-create new input text el
-    //      -apply input id
-    //      -apply classes
-    //      -apply other attributes
     var elType = isNewEmptyLogEntry ? "input" : "div";
     var newLeTextPart = document.createElement(elType);
     if (isNewEmptyLogEntry) {
@@ -343,7 +511,7 @@ function CreateLogEntryItem(isNewEmptyLogEntry, logEntryNumb, nowUtcMs, logEntry
     }
     $(newLeTextPart).addClass(_lePartClass);
     $(newLeTextPart).addClass(_leTextClass);
-    if (!isNewEmptyLogEntry) newLeTextPart.innerHTML = logEntryTextVal;
+    if (!isNewEmptyLogEntry) $(newLeTextPart).text(logEntryTextVal).html();
     //-add current milliseconds since epoch hidden div
     //-this is a safety measure; if db goes down, it can be restarted
     //  and then this hidden value will be used to save this recently created log entry
@@ -353,12 +521,12 @@ function CreateLogEntryItem(isNewEmptyLogEntry, logEntryNumb, nowUtcMs, logEntry
         $(hiddenLeTsUtcNowDiv).addClass(_hiddenScoreClass);
         hiddenLeTsUtcNowDiv.innerHTML = nowUtcMs;
     }
-    //-add new ts,number, and text input elements as children to new entry div
-    //-add new entry div as child to entry list
+    //-add new timestamp,number, and text input (and hidden div if applies) elements as children to the new entry div
     newLogEntryEl.appendChild(newLeDateEl);
     newLogEntryEl.appendChild(newLeNumbEl);
     newLogEntryEl.appendChild(newLeTextPart);
     if (hiddenLeTsUtcNowDiv !== null) newLogEntryEl.appendChild(hiddenLeTsUtcNowDiv);
+    //-add new entry div as child to entry list
     var parent = document.getElementById(_logEntryListContainerId);
     parent.appendChild(newLogEntryEl);
     // LAST give input el focus
@@ -433,9 +601,11 @@ function FormatLogEntryNumber(n) {
 // SECTION START: db bar handling
 
 
-function getCurrentDbSvcStatus(dbStatusEl, ts) {
+function getCurrentDbSvcStatus() {
+    var ts = new Date();
+    var dbStatusEl = document.getElementById(_dbLastCheckValueId);
     dbStatusEl.innerHTML = _dbStatusTextUpdating;
-    var url = "/Home/CheckBackgroundSvc";
+    var url = _urlHomeCkBgSvc;
     JqueryAjaxRegular(
         "GET",
         url,
@@ -445,12 +615,13 @@ function getCurrentDbSvcStatus(dbStatusEl, ts) {
     );
 }
 
-function updateDisplayedBgSvcStatusWithCheckResult(svcIsRunning, statusEl, ts) {
+function updateDisplayedBgSvcStatusWithCheckResult(svcIsRunning, statusEl, ts, doNotOfferStartSvc) {
     var updateText = svcIsRunning ? _dbStatusTextRunning : _dbStatusTextStopped;
     var fmtTime = fmtDateJustTime(ts);
     statusEl.innerHTML = updateText + " (checked " + fmtTime + ")";
     ensureDbBarSectionHasCorrectDimOrHighlight(svcIsRunning, statusEl);
     flashThisThing($(statusEl));
+    if (!svcIsRunning) showStartBtn();
 }
 
 function ensureDbBarSectionHasCorrectDimOrHighlight(svcIsRunning, statusEl) {
@@ -460,25 +631,32 @@ function ensureDbBarSectionHasCorrectDimOrHighlight(svcIsRunning, statusEl) {
 }
 
 
-function saveAsPrepForQuit(msgEl, msgTextEl, statusEl) {
-    var url = "/Home/SaveAsPrepForQuit";
+function saveAsPrepForQuit() {
+    var url = _urlHomeSaveQuit;
     JqueryAjaxRegular(
         "POST",
         url,
         null,
-        function (returnData) { showResultMsgInitiateStopSvc(returnData.toLowerCase() === "true", msgEl, msgTextEl, statusEl); },
+        function (returnData) { showResultMsgInitiateStopSvc(returnData.toLowerCase() === "true"); },
         null
     );
 }
 
-function showResultMsgInitiateStopSvc(success, msgEl, msgTextEl, statusEl) {
-    var msgText = success ? _dbBarMsgSuccess : _dbBarMsgFail;
-    showResultMsg(msgEl, msgTextEl, msgText);
+function saveAsPrepForQuitFollowUp() {
+    
+}
+
+function showResultMsgInitiateStopSvc(success) {
+    var statusEl = document.getElementById(_dbLastCheckValueId);
+    var msgText = success ? _dbBarMsgSaveQuitSuccess : _dbBarMsgSaveQuitFail;
+    showResultMsg(msgText);
     if (!success) return;
     stopBackgroundSvc(statusEl);
 }
 
-function showResultMsg(msgEl, msgTextEl, msgText) {
+function showResultMsg(msgText) {
+    var msgEl = document.getElementById(_dbBarMsgId);
+    var msgTextEl = document.getElementById(_dbBarMsgTextId);
     var ts = new Date();
     var fmtTime = fmtDateJustTime(ts);
     msgText += " (" + fmtTime + ")";
@@ -489,7 +667,7 @@ function showResultMsg(msgEl, msgTextEl, msgText) {
 
 function stopBackgroundSvc(statusEl) {
     statusEl.innerHTML = _dbStatusTextUpdating;
-    var url = "/Home/StopBackgroundSvc";
+    var url = _urlHomeStopBgSvc;
     JqueryAjaxRegular(
         "POST",
         url,
@@ -499,7 +677,8 @@ function stopBackgroundSvc(statusEl) {
     );
 }
 
-function hideXclickedMsg(el) {
+function hideXclickedMsg() {
+    var el = document.getElementById(_dbBarMsgId);
     if (!$(el).hasClass(_hideClass)) $(el).addClass(_hideClass);
 }
 

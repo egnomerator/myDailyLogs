@@ -24,7 +24,10 @@ namespace MyDailyLogs
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Common").Include(
-                "~/Scripts/Common/myDailyLogEntries.js"));
+                "~/Scripts/Common/common.js",
+                "~/Scripts/Common/urlBuilder.js",
+                "~/Scripts/Common/myDailyLogEntries.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

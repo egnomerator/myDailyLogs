@@ -1,0 +1,14 @@
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.DataAccess.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.DataAccess.pdb
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.Core.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Common.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Interfaces.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Redis.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Text.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.Core.pdb
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Common.xml
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Redis.xml
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Text.xml
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.pdb

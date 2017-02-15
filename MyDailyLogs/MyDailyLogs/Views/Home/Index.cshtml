@@ -9,41 +9,8 @@
     var logEntries = Model;
 
     var origFirstLoadedLogEntryDateTime = logEntries.Any() ? DateTime.Parse(logEntries.First().EntryDateTime) : new DateTime();
-
-    const string logEntryListContainerId = Constants.LogEntryListContainerId + "01";
-    // arbitrary choice based on my expectation of never entring logs in the tripple+ digits in a single day
-    //  -if i were to design this for other users i'd probably implement this differently
-    const int maxNumbDivDigitWidth = Constants.MaxNumbDivDigitWidth;
-    const string leDayDateClass = Constants.LeDayDateClass;
-    const string logEntryClass = Constants.LogEntryClass;
-    const string lePartClass = Constants.LePartClass;
-    const string leNumbClass = Constants.LeNumbClass;
-    const string leDateClass = Constants.LeDateClass;
-    const string leTextClass = Constants.LeTextClass;
-    const string hiddenScoreClass = Constants.HiddenScoreClass;
-
-    const string focusLineClass = Constants.FocusLineClass;
-
-    const string newLogEntryClass = Constants.NewLogEntryClass;
-    const string newLogEntryTsEllipsis = Constants.NewLogEntryTsEllipsis;
-    const string newLogEntryTextInputPlaceholder = Constants.NewLogEntryTextInputPlaceholder;
-    const string newLogEntryTextInputId = Constants.NewLogEntryTextInputId + "01";
-    const string newLogEntryTextInputName = Constants.NewLogEntryTextInputName + "01";
-
-    Func<ushort, string> formatLogEntryNumber = n =>
-    {
-        var numb = n;
-        var numbStr = numb.ToString(CultureInfo.InvariantCulture);
-        var numbStrLength = numbStr.Length;
-        var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
-        var leNumbStr = string.Empty;
-        for (var d = 0; d < digitDiff; d++)
-        {
-            leNumbStr += " ";
-        }
-        return leNumbStr + numbStr + " ";
-    };
-
+    var logEntryStrArraySeparator = HttpUtility.UrlEncode(Constants.LogEntryStrArraySeparator);
+    //const string logEntryStrArraySeparator = Constants.LogEntryStrArraySeparator;
     const string dbInfoBarId = Constants.DbInfoBarId;
     const string dbInfoBarClass = Constants.DbInfoBarClass;
     const string dbInfoBarLblId = Constants.DbInfoBarLblId;
@@ -59,49 +26,86 @@
     const string dbStatusValueInrHtml = Constants.DbStatusValueInrHtml;
     const string dbLastCheckValueId = Constants.DbLastCheckValueId;
     const string dbLastCheckValueClass = Constants.DbLastCheckValueClass;
+    const string dbBarBtnClass = Constants.DbBarBtnClass;
     const string dbUpdateBtnId = Constants.DbUpdateBtnId;
     const string dbUpdateBtnClass = Constants.DbUpdateBtnClass;
     const string dbUpdateBtnValue = Constants.DbUpdateBtnValue;
     const string dbStartBtnId = Constants.DbStartBtnId;
     const string dbStartBtnClass = Constants.DbStartBtnClass;
     const string dbStartBtnValue = Constants.DbStartBtnValue;
+    const string dbSyncBtnId = Constants.DbSyncBtnId;
+    const string dbSyncBtnClass = Constants.DbSyncBtnClass;
+    const string dbSyncBtnValue = Constants.DbSyncBtnValue;
     const string dbSaveBtnClass = Constants.DbSaveBtnClass;
     const string dbSaveBtnValue = Constants.DbSaveBtnValue;
-    const string dbSaveBtnId = Constants.DbSaveBtnId;
     const string dbSaveAndQuitAreaId = Constants.DbSaveAndQuitAreaId;
     const string dbSaveAndQuitAreaClass = Constants.DbSaveAndQuitAreaClass;
     const string dbSaveAndQuitLblId = Constants.DbSaveAndQuitLblId;
     const string dbSaveAndQuitLblClass = Constants.DbSaveAndQuitLblClass;
+    const string dbSaveBtnId = Constants.DbSaveBtnId;
     const string dbBarDimClass = Constants.DbBarDimClass;
+    const string dbBarMsgId = Constants.DbBarMsgId;
+    const string dbBarMsgClass = Constants.DbBarMsgClass;
     const string dbBarMsgTextId = Constants.DbBarMsgTextId;
     const string dbBarMsgTextClass = Constants.DbBarMsgTextClass;
+    const string dbBarMsgSaveQuitSuccess = Constants.DbBarMsgSaveQuitSuccess;
+    const string dbBarMsgSyncSuccess = Constants.DbBarMsgSyncSuccess;
+    const string dbBarMsgSaveQuitFail = Constants.DbBarMsgSaveQuitFail;
+    const string dbBarMsgSyncFail = Constants.DbBarMsgSyncFail;
+    const string dbBarMsgAutoSaveFailed = Constants.DbBarMsgAutoSaveFailed;
+    const string dbBarMsgServiceStarted = Constants.DbBarMsgServiceStarted;
+    const string dbBarMsgServiceStartFailed = Constants.DbBarMsgServiceStartFailed;
     const string dbBarMsgXId = Constants.DbBarMsgXId;
     const string dbBarMsgXclass = Constants.DbBarMsgXclass;
     const string hideClass = Constants.HideClass;
     const string noDisplayClass = Constants.NoDisplayClass;
     const string leUnsavedClass = Constants.LeUnsavedClass;
-
-    const string dbBarMsgId = Constants.DbBarMsgId;
-    const string dbBarMsgClass = Constants.DbBarMsgClass;
-    const string dbBarMsgSuccess = Constants.DbBarMsgSuccess;
-    const string dbBarMsgServiceStarted = Constants.DbBarMsgServiceStarted;
-    const string dbBarMsgFail = Constants.DbBarMsgFail;
-    const string dbBarMsgAutoSaveFailed = Constants.DbBarMsgAutoSaveFailed;
-
     const string dbStatusTextUpdating = Constants.DbStatusTextUpdating;
     const string dbStatusTextRunning = Constants.DbStatusTextRunning;
     const string dbStatusTextStopped = Constants.DbStatusTextStopped;
-    const int dbStatusUpdateInterval = Constants.DbStatusUpdateInterval;
-
+    const int    dbStatusUpdateInterval = Constants.DbStatusUpdateInterval;
     const string dbInfoBarTitle = Constants.DbInfoBarTitle;
     const string dbStatusAreaTitle = Constants.DbStatusAreaTitle;
     const string dbUpdateBtnTitle = Constants.DbUpdateBtnTitle;
-    const string dbSaveBtnTitle = Constants.DbSaveBtnTitle;
     const string dbStartBtnTitle = Constants.DbStartBtnTitle;
+    const string dbSyncBtnTitle = Constants.DbSyncBtnTitle;
+    const string dbSaveBtnTitle = Constants.DbSaveBtnTitle;
+    const string logEntryListContainerId = Constants.LogEntryListContainerId;
+    const string logEntryListContainerClass = Constants.LogEntryListContainerClass;
+    const int    maxNumbDivDigitWidth = Constants.MaxNumbDivDigitWidth;
+    const string leDayDateClass = Constants.LeDayDateClass;
+    const string logEntryClass = Constants.LogEntryClass;
+    const string lePartClass = Constants.LePartClass;
+    const string leNumbClass = Constants.LeNumbClass;
+    const string leDateClass = Constants.LeDateClass;
+    const string leTextClass = Constants.LeTextClass;
+    const string hiddenScoreClass = Constants.HiddenScoreClass;
+    const string focusLineClass = Constants.FocusLineClass;
+    const string newLogEntryId = Constants.NewLogEntryId;
+    const string newLogEntryClass = Constants.NewLogEntryClass;
+    const string newLogEntryTsEllipsis = Constants.NewLogEntryTsEllipsis;
+    const string newLogEntryTextInputId = Constants.NewLogEntryTextInputId;
+    const string newLogEntryTextInputName = Constants.NewLogEntryTextInputName;
+    const string newLogEntryTextInputPlaceholder = Constants.NewLogEntryTextInputPlaceholder;
+
+    Func<ushort, string> formatLogEntryNumber = n =>
+    {
+        var numb = n;
+        var numbStr = numb.ToString(CultureInfo.InvariantCulture);
+        var numbStrLength = numbStr.Length;
+        var digitDiff = maxNumbDivDigitWidth - numbStrLength + 1;
+        var leNumbStr = string.Empty;
+        for (var d = 0; d < digitDiff; d++)
+        {
+            leNumbStr += " ";
+        }
+        return leNumbStr + numbStr + " ";
+    };
+
 }
 
 @{ Html.RenderPartial("_BackEndInfo");}
-<div id="@logEntryListContainerId" class="logEntryListContainerClass">
+<div id="@logEntryListContainerId" class="@logEntryListContainerClass">
 
     @{
         var prevLogEntryDateTime = DateTime.MinValue;
@@ -143,7 +147,7 @@
     @{
         var fmtNewLogEntryNumber = formatLogEntryNumber((ushort)(lastLeNumb + 1));
     }
-    <div class="@logEntryClass @newLogEntryClass">
+    <div id="@newLogEntryId" class="@logEntryClass @newLogEntryClass">
         <div class="@leDateClass @lePartClass">@newLogEntryTsEllipsis</div><div class="@leNumbClass @lePartClass">@fmtNewLogEntryNumber</div><input id="@newLogEntryTextInputId" class="@leTextClass @lePartClass" type="text" name="@newLogEntryTextInputName" autofocus placeholder="@newLogEntryTextInputPlaceholder"/>
     </div>
 </div>
@@ -152,7 +156,66 @@
 {
     <script type="text/javascript">
 
-        var leNotSavingAndIsKnown = false;
+        var logEntryStrArraySeparator = "@logEntryStrArraySeparator";
+        var dbInfoBarId = "@dbInfoBarId";
+        var dbInfoBarClass = "@dbInfoBarClass";
+        var dbInfoBarLblId = "@dbInfoBarLblId";
+        var dbInfoBarLblClass = "@dbInfoBarLblClass";
+        var dbInfoBarSpecialMsgAreaId = "@dbInfoBarSpecialMsgAreaId";
+        var dbInfoBarSpecialMsgAreaClass = "@dbInfoBarSpecialMsgAreaClass";
+        var dbStatusAreaId = "@dbStatusAreaId";
+        var dbStatusAreaClass = "@dbStatusAreaClass";
+        var dbStatusAreaLblId = "@dbStatusAreaLblId";
+        var dbStatusAreaLblClass = "@dbStatusAreaLblClass";
+        var dbStatusValueId = "@dbStatusValueId";
+        var dbStatusValueClass = "@dbStatusValueClass";
+        var dbStatusValueInrHtml = "@dbStatusValueInrHtml";
+        var dbLastCheckValueId = "@dbLastCheckValueId";
+        var dbLastCheckValueClass = "@dbLastCheckValueClass";
+        var dbBarBtnClass = "@dbBarBtnClass";
+        var dbUpdateBtnId = "@dbUpdateBtnId";
+        var dbUpdateBtnClass = "@dbUpdateBtnClass";
+        var dbUpdateBtnValue = "@dbUpdateBtnValue";
+        var dbStartBtnId = "@dbStartBtnId";
+        var dbStartBtnClass = "@dbStartBtnClass";
+        var dbStartBtnValue = "@dbStartBtnValue";
+        var dbSyncBtnId = "@dbSyncBtnId";
+        var dbSyncBtnClass = "@dbSyncBtnClass";
+        var dbSyncBtnValue = "@dbSyncBtnValue";
+        var dbSaveBtnClass = "@dbSaveBtnClass";
+        var dbSaveBtnValue = "@dbSaveBtnValue";
+        var dbSaveAndQuitAreaId = "@dbSaveAndQuitAreaId";
+        var dbSaveAndQuitAreaClass = "@dbSaveAndQuitAreaClass";
+        var dbSaveAndQuitLblId = "@dbSaveAndQuitLblId";
+        var dbSaveAndQuitLblClass = "@dbSaveAndQuitLblClass";
+        var dbSaveBtnId = "@dbSaveBtnId";
+        var dbBarDimClass = "@dbBarDimClass";
+        var dbBarMsgId = "@dbBarMsgId";
+        var dbBarMsgClass = "@dbBarMsgClass";
+        var dbBarMsgTextId = "@dbBarMsgTextId";
+        var dbBarMsgTextClass = "@dbBarMsgTextClass";
+        var dbBarMsgSaveQuitSuccess = "@dbBarMsgSaveQuitSuccess";
+        var dbBarMsgSyncSuccess = "@dbBarMsgSyncSuccess";
+        var dbBarMsgSaveQuitFail = "@dbBarMsgSaveQuitFail";
+        var dbBarMsgSyncFail = "@dbBarMsgSyncFail";
+        var dbBarMsgAutoSaveFailed = "@dbBarMsgAutoSaveFailed";
+        var dbBarMsgServiceStarted = "@dbBarMsgServiceStarted";
+        var dbBarMsgServiceStartFailed = "@dbBarMsgServiceStartFailed";
+        var dbBarMsgXId = "@dbBarMsgXId";
+        var dbBarMsgXclass = "@dbBarMsgXclass";
+        var hideClass = "@hideClass";
+        var noDisplayClass = "@noDisplayClass";
+        var leUnsavedClass = "@leUnsavedClass";
+        var dbStatusTextUpdating = "@dbStatusTextUpdating";
+        var dbStatusTextRunning = "@dbStatusTextRunning";
+        var dbStatusTextStopped = "@dbStatusTextStopped";
+        var dbStatusUpdateInterval = "@dbStatusUpdateInterval";
+        var dbInfoBarTitle = "@dbInfoBarTitle";
+        var dbStatusAreaTitle = "@dbStatusAreaTitle";
+        var dbUpdateBtnTitle = "@dbUpdateBtnTitle";
+        var dbStartBtnTitle = "@dbStartBtnTitle";
+        var dbSyncBtnTitle = "@dbSyncBtnTitle";
+        var dbSaveBtnTitle = "@dbSaveBtnTitle";
         var logEntryListContainerId = "@logEntryListContainerId";
         var maxNumbDivDigitWidth = "@maxNumbDivDigitWidth";
         var leDayDateClass = "@leDayDateClass";
@@ -162,42 +225,76 @@
         var leDateClass = "@leDateClass";
         var leTextClass = "@leTextClass";
         var hiddenScoreClass = "@hiddenScoreClass";
-
-        var dbStatusTextUpdating = "@dbStatusTextUpdating";
-        var dbStatusTextRunning = "@dbStatusTextRunning";
-        var dbStatusTextStopped = "@dbStatusTextStopped";
-        var dbStatusUpdateInterval = "@dbStatusUpdateInterval";
-        var dbBarDimClass = "@dbBarDimClass";
-
-        var dbUpdateBtnId = "@dbUpdateBtnId";
-        var dbUpdateBtnClass = "@dbUpdateBtnClass";
-        var dbUpdateBtnValue = "@dbUpdateBtnValue";
-        var dbUpdateBtnTitle = "@dbUpdateBtnTitle";
-
-        var dbStartBtnId = "@dbStartBtnId";
-        var dbStartBtnClass = "@dbStartBtnClass";
-        var dbStartBtnValue = "@dbStartBtnValue";
-        var dbStartBtnTitle = "@dbStartBtnTitle";
-
-        var dbBarMsgSuccess = "@dbBarMsgSuccess";
-        var dbBarMsgServiceStarted = "@dbBarMsgServiceStarted";
-        var dbBarMsgFail = "@dbBarMsgFail";
-        var dbBarMsgAutoSaveFailed = "@dbBarMsgAutoSaveFailed";
-        var hideClass = "@hideClass";
-        var noDisplayClass = "@noDisplayClass";
-        var leUnsavedClass = "@leUnsavedClass";
-
         var focusLineClass = "@focusLineClass";
-
+        var newLogEntryId = "@newLogEntryId";
         var newLogEntryClass = "@newLogEntryClass";
         var newLogEntryTsEllipsis = "@newLogEntryTsEllipsis";
-        var newLogEntryTextInputPlaceholder = "@newLogEntryTextInputPlaceholder";
         var newLogEntryTextInputId = "@newLogEntryTextInputId";
         var newLogEntryTextInputName = "@newLogEntryTextInputName";
+        var newLogEntryTextInputPlaceholder = "@newLogEntryTextInputPlaceholder";
 
         $(document).ready(function() {
             UpdateLogEntryElementAttributeVariables(
-                    leNotSavingAndIsKnown,
+                    logEntryStrArraySeparator,
+                    dbInfoBarId,
+                    dbInfoBarClass,
+                    dbInfoBarLblId,
+                    dbInfoBarLblClass,
+                    dbInfoBarSpecialMsgAreaId,
+                    dbInfoBarSpecialMsgAreaClass,
+                    dbStatusAreaId,
+                    dbStatusAreaClass,
+                    dbStatusAreaLblId,
+                    dbStatusAreaLblClass,
+                    dbStatusValueId,
+                    dbStatusValueClass,
+                    dbStatusValueInrHtml,
+                    dbLastCheckValueId,
+                    dbLastCheckValueClass,
+                    dbBarBtnClass,
+                    dbUpdateBtnId,
+                    dbUpdateBtnClass,
+                    dbUpdateBtnValue,
+                    dbStartBtnId,
+                    dbStartBtnClass,
+                    dbStartBtnValue,
+                    dbSyncBtnId,
+                    dbSyncBtnClass,
+                    dbSyncBtnValue,
+                    dbSaveBtnClass,
+                    dbSaveBtnValue,
+                    dbSaveAndQuitAreaId,
+                    dbSaveAndQuitAreaClass,
+                    dbSaveAndQuitLblId,
+                    dbSaveAndQuitLblClass,
+                    dbSaveBtnId,
+                    dbBarDimClass,
+                    dbBarMsgId,
+                    dbBarMsgClass,
+                    dbBarMsgTextId,
+                    dbBarMsgTextClass,
+                    dbBarMsgSaveQuitSuccess,
+                    dbBarMsgSyncSuccess,
+                    dbBarMsgSaveQuitFail,
+                    dbBarMsgSyncFail,
+                    dbBarMsgAutoSaveFailed,
+                    dbBarMsgServiceStarted,
+                    dbBarMsgServiceStartFailed,
+                    dbBarMsgXId,
+                    dbBarMsgXclass,
+                    hideClass,
+                    noDisplayClass,
+                    leUnsavedClass,
+                    dbStatusTextUpdating,
+                    dbStatusTextRunning,
+                    dbStatusTextStopped,
+                    dbStatusUpdateInterval,
+                    dbInfoBarTitle,
+                    dbStatusAreaTitle,
+                    dbUpdateBtnTitle,
+                    dbStartBtnTitle,
+                    dbSyncBtnTitle,
+                    dbSaveBtnTitle,
                     logEntryListContainerId,
                     maxNumbDivDigitWidth,
                     leDayDateClass,
@@ -207,33 +304,15 @@
                     leDateClass,
                     leTextClass,
                     hiddenScoreClass,
-                    dbStatusTextUpdating,
-                    dbStatusTextRunning,
-                    dbStatusTextStopped,
-                    dbUpdateBtnId,
-                    dbUpdateBtnClass,
-                    dbUpdateBtnValue,
-                    dbUpdateBtnTitle,
-                    dbStartBtnId,
-                    dbStartBtnClass,
-                    dbStartBtnValue,
-                    dbStartBtnTitle,
-                    dbBarDimClass,
-                    hideClass,
-                    noDisplayClass,
-                    leUnsavedClass,
-                    dbBarMsgSuccess,
-                    dbBarMsgServiceStarted,
-                    dbBarMsgFail,
-                    dbBarMsgAutoSaveFailed,
                     focusLineClass,
+                    newLogEntryId,
                     newLogEntryClass,
                     newLogEntryTsEllipsis,
-                    newLogEntryTextInputPlaceholder,
                     newLogEntryTextInputId,
-                    newLogEntryTextInputName
+                    newLogEntryTextInputName,
+                    newLogEntryTextInputPlaceholder
                 );
-            getCurrentDbSvcStatus(document.getElementById('@dbLastCheckValueId'), new Date());
+            getCurrentDbSvcStatus();
         });
 
         setInterval(function() {
@@ -242,7 +321,7 @@
             dbStatusUpdateInterval);
 
         function doTheThing() {
-            getCurrentDbSvcStatus(document.getElementById('@dbLastCheckValueId'), new Date());
+            getCurrentDbSvcStatus();
         }
 
         $(document)
@@ -252,39 +331,13 @@
                     var nowUtcMs = Date.now();
                     var logEntryTextVal = this.value;
                     var enterKey = 13;
-                    if (e.keyCode === enterKey) {
-                        if (LogEntryTextIsValid(logEntryTextVal)) {
-                            SaveNewLogEntryAndUpdateUI(this, logEntryTextVal, nowUtcMs,
-                                document.getElementById('@dbBarMsgId'),
-                                document.getElementById('@dbBarMsgTextId'),
-                                document.getElementById('@dbBarMsgAutoSaveFailed')
-                            );
-                        }
-                    }
+                    if (e.keyCode === enterKey && LogEntryTextIsValid(logEntryTextVal)) SaveNewLogEntryAndUpdateUI(logEntryTextVal, nowUtcMs);
                 });
-        $(document)
-            .on('click',
-                '#@dbUpdateBtnId',
-                function () {
-                    getCurrentDbSvcStatus(document.getElementById('@dbLastCheckValueId'), new Date());
-                });
-        $(document).on('click','#@dbSaveBtnId',function () {
-            saveAsPrepForQuit(
-                document.getElementById('@dbBarMsgId'),
-                document.getElementById('@dbBarMsgTextId'),
-                document.getElementById('@dbLastCheckValueId'));
-        });
-        $(document).on('click', '#@dbBarMsgXId', function () {
-            hideXclickedMsg(document.getElementById('@dbBarMsgId'));
-        });
-        $(document).on('click', '#@dbStartBtnId', function () {
-            handleStartBtnClick(document.getElementById('@dbBarMsgId'),document.getElementById('@dbBarMsgTextId'));
-        });
-        $(document).on('click', '#@dbBarMsgId', function () {
-            var msgText = document.getElementById('@dbBarMsgTextId');
-            if (msgText.innerHTML.indexOf('@dbBarMsgServiceStarted') === -1) return;
-            saveAllUnsavedLogEntries(document.getElementById('@dbBarMsgId'), msgText);
-        });
+        $(document).on('click','#@dbUpdateBtnId',function () {getCurrentDbSvcStatus();});
+        $(document).on('click','#@dbSaveBtnId',function () {saveAsPrepForQuit();});
+        $(document).on('click', '#@dbBarMsgXId', function () {hideXclickedMsg();});
+        $(document).on('click', '#@dbStartBtnId', function () {handleStartBtnClick();});
+        $(document).on('click', '#@dbSyncBtnId', function () {saveAllUnsavedLogEntries();});
 
     </script>
 }
@@ -305,8 +358,6 @@
             font-size: 2.25em;
             background: lightgray;
             padding-left: 5px;
-            border-top: 5px solid lightgray;
-            border-bottom: 5px solid lightgray;
             margin-bottom: -1px;
         }
         .@logEntryClass {
@@ -332,11 +383,12 @@
         .@leTextClass{
             min-width: 920px;
             margin-left: 0.25%;
+            white-space: pre;
         }
         .@hiddenScoreClass {
             display: none;
         }
-        .logEntryListContainerClass {
+        .@logEntryListContainerClass {
             display: inline-block;
             height: 80vh;
             max-height: 80vh;
@@ -345,6 +397,7 @@
             overflow-y: scroll;
         }
         .@dbInfoBarClass {
+            position: relative;
             float: left;
             height: 45px;
             width: 100%;
@@ -354,6 +407,9 @@
             margin-top: 0px;
             margin-left: 0px;
             padding: 0px;
+            -webkit-box-shadow: 0px 4px 3px -1px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 4px 3px -1px rgba(0,0,0,0.75);
+            box-shadow: 0px 4px 3px -1px rgba(0,0,0,0.75);
         }
         .@dbInfoBarLblClass {
             float: left;
@@ -363,6 +419,7 @@
             padding-top: 7px;
             background: #6b0101;
             color: #F2B9B6;
+            box-shadow: 3px 1px 8px -1px rgba(0,0,0,1);
         }
         .@dbStatusAreaClass {
             height: 100%;
@@ -370,8 +427,8 @@
             width: 30%;
         }
         .@dbStatusValueClass,
-        .@dbLastCheckValueClass{ 
-            padding-top: 12px;
+        .@dbLastCheckValueClass{
+            padding-top: 13px;
         }
         .@dbStatusAreaLblClass {
             text-align: center;
@@ -411,7 +468,7 @@
             width: 14%;
             float: right;
         }
-        .@dbSaveAndQuitLblClass{ 
+        .@dbSaveAndQuitLblClass{
             text-align: right;
             text-decoration: none !important;
             height: 100%;
@@ -419,39 +476,73 @@
             float: left;
             padding-top: 3px;
         }
+        .@dbSyncBtnClass,
+        .@dbSaveBtnClass,
         .@dbStartBtnClass,
-        .@dbUpdateBtnClass,
-        .@dbSaveBtnClass {
+        .@dbUpdateBtnClass {
             background: #D92B21;
             color: #F2B9B6;
-            margin-top: 10px;
-            margin: 10px 0 0 6%;
+            width: 60px;
+            height: 35px;
+            border: 1px solid #F2B9B6;
+            padding-top: 6px;
+            margin: 5px 7px 0 7px;
         }
-        .@dbSaveBtnClass{
-            margin-right: 6%;
+        .@dbSaveBtnClass {
+            float: right;
         }
-        .@dbBarMsgClass{ 
+        .@dbBarMsgClass{
             border: 2px dotted;
         }
-        .@dbBarDimClass{ 
+        .@dbBarDimClass{
             background: rgba(107, 1, 1, 0.48);
         }
         .@hideClass{
             visibility: hidden;
         }
         .@noDisplayClass{
-            display: none;
+            display: none !important;
         }
         .@dbBarMsgXclass {
-            text-align: right;
-            padding-right: 4px;
             display: inline;
             float: right;
             width: 15px;
-            cursor: pointer;
+            border: 1px;
+            border-radius: 20px;
+            padding: 0px 0px 1px 5px;
+            font-size: 0.6em;
+        }
+        .@dbBarMsgXclass:hover {
+            background: #D92B21;
         }
         .@leUnsavedClass {
             background: rgb(208, 49, 40)
+        }
+        .@dbInfoBarClass,
+        .@dbBarMsgClass{
+            cursor: context-menu;
+        }
+        .@dbInfoBarLblClass,
+        .@dbBarMsgXclass {
+            cursor: pointer;
+        }
+        .@dbBarBtnClass {
+            cursor: pointer;
+            box-shadow: 5px 3px 8px -4px rgba(0,0,0,0.75);
+        }
+        .@dbBarBtnClass:hover {
+            background: rgb(220, 61, 52);
+        }
+        .@dbBarBtnClass:active {
+            background: #bf261d;
+            box-shadow: none;
+        }
+        .@dbInfoBarLblClass:hover {
+            background: #820202;
+        }
+        .@dbInfoBarLblClass:active {
+            background: rgba(107, 1, 1, 0.48);
+            box-shadow: none;
         }
 
     </style>

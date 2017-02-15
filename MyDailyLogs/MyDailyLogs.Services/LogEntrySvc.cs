@@ -73,8 +73,14 @@ namespace MyDailyLogs.Services
         {
             var leArray = logEntries.ConvertStringOfCommaSeparatedArrayToListOfString();
             var leTuples = ConvertLogEntryStringArrayToTuplesList(leArray);
-
-            _logEntryPersistence.SaveRecentLogEntries(leTuples);
+            try
+            {
+                _logEntryPersistence.SaveRecentLogEntries(leTuples);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -177,10 +183,11 @@ namespace MyDailyLogs.Services
 
             for (var i = 0; i < leArray.Length; i += 2)
             {
+                var tsStr = leArray[i];
                 // if this doesn't parse, i want an error thrown
-                var currentTs = long.Parse(leArray[i]);
+                var currentTs = long.Parse(tsStr);
                 var currentText = leArray[i + 1];
-                leTuples.Add(new Tuple<long, string>(currentTs,currentText));
+                leTuples.Add(new Tuple<long, string>(currentTs,$"{tsStr}{currentText}"));
             }
 
             return leTuples;

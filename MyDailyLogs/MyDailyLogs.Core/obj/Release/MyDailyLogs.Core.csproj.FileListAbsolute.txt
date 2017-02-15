@@ -1,0 +1,4 @@
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Release\MyDailyLogs.Core.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Release\MyDailyLogs.Core.pdb
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.dll
+C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.pdb

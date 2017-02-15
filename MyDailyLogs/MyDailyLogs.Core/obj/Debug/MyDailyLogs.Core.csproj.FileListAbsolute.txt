@@ -10,6 +10,5 @@ H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.C
 H:\LDE\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.pdb
-C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.csprojResolveAssemblyReference.cache
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb

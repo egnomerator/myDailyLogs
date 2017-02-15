@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using MyDailyLogs.Core.Configuration;
 
 namespace MyDailyLogs.Core.Utilities
@@ -35,8 +36,8 @@ namespace MyDailyLogs.Core.Utilities
 
         public static string[] ConvertStringOfCommaSeparatedArrayToListOfString(this string str)
         {
-            if (string.IsNullOrWhiteSpace(str)) return new string[0];
-            return str.IndexOf(",", StringComparison.OrdinalIgnoreCase) == -1 ? new [] { str } : str.Split(',');
+            const string findPattern = Constants.RegexifiedLogEntryStrArrSeparator;
+            return Regex.Split(str, findPattern);
         }
 
 

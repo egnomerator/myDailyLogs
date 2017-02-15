@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using MyDailyLogs.Services;
 using MyDailyLogs.Services.Interfaces;
@@ -31,14 +32,15 @@ namespace MyDailyLogs.Controllers
             return View(logEntryVms);
         }
 
-        //
-        // POST: /Home/SaveNewLogEntry
+        ////
+        //// POST: /Home/SaveNewLogEntry
 
-        [HttpPost]
-        public void SaveNewLogEntry(string timeStamp, string logEntryText)
-        {
-            _logEntrySvc.SaveLogEntry(timeStamp,logEntryText);
-        }
+        //[HttpPost]
+        //public void SaveNewLogEntry(string timeStamp, string logEntryText)
+        //{
+        //    var decodedStr = HttpUtility.UrlDecode(logEntryText);
+        //    _logEntrySvc.SaveLogEntry(timeStamp,decodedStr);
+        //}
 
         //
         // POST: /Home/SaveRecentLogEntries
@@ -46,7 +48,8 @@ namespace MyDailyLogs.Controllers
         [HttpPost]
         public bool SaveRecentLogEntries(string logEntries)
         {
-            return _logEntrySvc.SaveRecentLogEntries(logEntries);
+            var decodedStr = HttpUtility.UrlDecode(logEntries);
+            return _logEntrySvc.SaveRecentLogEntries(decodedStr);
         }
 
         //
@@ -84,19 +87,9 @@ namespace MyDailyLogs.Controllers
             return _logEntrySvc.CheckIfPersistenceBackgroundSvcIsRunning();
         }
 
-        //public void
-
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Message = "This is a handy little manual logging app.";
             return View();
         }
     }
