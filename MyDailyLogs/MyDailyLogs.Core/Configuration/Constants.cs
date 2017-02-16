@@ -12,7 +12,7 @@ namespace MyDailyLogs.Core.Configuration
         // This number has to be EVEN because each log entry will be retrieved from Redis in 2 pieces:
         //      1) the timestamp 2) the text
         // (The business logic will still check whether this limit is even and add 1 to this limit if it is odd)
-        public const int MaxLogEntriesServed = 40;
+        public const int MaxLogEntriesServed = 100;
 
 
         // Attempted to select a char set that a user would be extremely unlikely to includ in 

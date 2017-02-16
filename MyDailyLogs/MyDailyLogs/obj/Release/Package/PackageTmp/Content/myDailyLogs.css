@@ -1,0 +1,7 @@
+﻿.viewWindow {
+    display: inline-block;
+    height: 86vh;
+    max-height: 86vh;
+    width: 100%;
+    max-width: 100%;
+}
