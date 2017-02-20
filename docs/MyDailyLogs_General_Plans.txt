@@ -1,0 +1,26 @@
+My Daily Logs Future
+
+Features
+	-Passive/Active Mode
+	-Search Options
+		-Types
+			-by date range
+			-by text (log entries containing "xxxx")
+			-nested search
+				-search by date within text search results
+				-search by text within date range search results
+		-How
+			-Persistence level search
+				-Redis
+					-can definitely support date range search
+					-RESEARCH: not sure if sorted set datatype has any built in text 
+					 search?
+				-SSMS
+					-Additional persistence to provide ability to text search at db level
+					-RESEARCH: need console app or service to handle updating SSMS with
+					 data from Redis?
+			-BLL search
+Structure
+	-RESEARCH: Any future needs for structural changes based on future plans?
+		-Add console app or service
+		-Add another persistence type (SSMS?)
