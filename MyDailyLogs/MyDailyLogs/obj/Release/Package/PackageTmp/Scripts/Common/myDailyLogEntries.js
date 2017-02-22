@@ -436,7 +436,7 @@ function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(logEntryTextVal, nowUtcMs
     var currentNumb = parseInt(associatedNumberElVal);
     var nextNumb = currentNumb + 1;
 
-    CreateNextDayDateSectionIfNecessary();
+    currentNumb = CreateNextDayDateSectionIfNecessary() ? 1: currentNumb;
     var newLogEntry = ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEntryEl, currentNumb, nowUtcMs, logEntryTextVal);
     var isNewEmptyLogEntry = true;
     var newEmptyLe = CreateLogEntryItem(isNewEmptyLogEntry, nextNumb);
@@ -454,8 +454,9 @@ function CreateNextDayDateSectionIfNecessary() {
         var dateParts = lastDayDateStr.split("/");
         var lastDayDate = parseInt(dateParts[1]);
         var now = new Date();
-        if (lastDayDate < now.getDate()) InsertNewLeDayDateElement(beforeNode);
-        return;
+        var mustCreateNewLeDayDateEl = lastDayDate < now.getDate();
+        if (mustCreateNewLeDayDateEl) InsertNewLeDayDateElement(beforeNode);
+        return mustCreateNewLeDayDateEl;
     }
 }
 
