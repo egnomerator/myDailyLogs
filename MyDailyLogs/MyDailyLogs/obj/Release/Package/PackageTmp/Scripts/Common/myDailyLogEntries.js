@@ -434,9 +434,10 @@ function UpdateUIwithEntryInfoAndCreateNewLogEntryItem(logEntryTextVal, nowUtcMs
     var associatedNumberEl = $(containingLogEntryEl).find(leNumbClassLbl);
     var associatedNumberElVal = associatedNumberEl[0].innerHTML;
     var currentNumb = parseInt(associatedNumberElVal);
-    var nextNumb = currentNumb + 1;
 
     currentNumb = CreateNextDayDateSectionIfNecessary() ? 1: currentNumb;
+    var nextNumb = currentNumb + 1;
+
     var newLogEntry = ReplaceLogEntryNewWithLogEntrySubmitted(leTextInputEl, containingLogEntryEl, currentNumb, nowUtcMs, logEntryTextVal);
     var isNewEmptyLogEntry = true;
     var newEmptyLe = CreateLogEntryItem(isNewEmptyLogEntry, nextNumb);

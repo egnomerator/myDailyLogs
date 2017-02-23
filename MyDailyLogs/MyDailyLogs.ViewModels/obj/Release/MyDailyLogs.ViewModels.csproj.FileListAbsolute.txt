@@ -2,3 +2,7 @@ C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDa
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.pdb
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.pdb
+C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.dll
+C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.pdb
+C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.dll
+C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.pdb
