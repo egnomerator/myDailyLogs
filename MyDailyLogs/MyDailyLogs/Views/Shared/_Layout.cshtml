@@ -30,24 +30,30 @@
         <div class="viewWindow">
             @RenderBody()
         </div>
-        <hr />
-        <footer>
-            @{
-                // getting version parts
-                //      -manually using VS built-in version formatting differently: as major.minor.revision
-                var version = ViewContext.Controller.GetType().Assembly.GetName().Version;
-                var vMajor = version.Major;
-                var vMinor = version.Minor;
-                var vRevision = version.Build;
-                var vFmtMmr = $"{vMajor}.{vMinor}.{vRevision}";
-            }
-            <p>&copy; @DateTime.Now.Year - @Constants.WebAppDisplayName v.@vFmtMmr</p>
-        </footer>
     </div>
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/Common")
-    @RenderSection("scripts", required: false)
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <hr />
+        @{
+            // getting version parts
+            //      -manually using VS built-in version formatting differently: as major.minor.revision
+            var version = ViewContext.Controller.GetType().Assembly.GetName().Version;
+            var vMajor = version.Major;
+            var vMinor = version.Minor;
+            var vRevision = version.Build;
+            var vFmtMmr = $"{vMajor}.{vMinor}.{vRevision}";
+        }
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="versionLine">&copy; @DateTime.Now.Year - @Constants.WebAppDisplayName v.@vFmtMmr</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/Common")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
