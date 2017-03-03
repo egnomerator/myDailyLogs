@@ -40,7 +40,7 @@ namespace MyDailyLogs.ConsoleApp
 
             logEntryVms.ForEach(l =>
             {
-                Console.WriteLine($"{l.EntryNumber} | {l.EntryDateTime} | {l.EntryText}");
+                Console.WriteLine($"{l.EntryNumber} | {l.DateTime} | {l.Text}");
             });
 
             Console.ReadLine();

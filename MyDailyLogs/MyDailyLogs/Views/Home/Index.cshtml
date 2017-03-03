@@ -8,7 +8,7 @@
 
     var logEntries = Model;
 
-    var origFirstLoadedLogEntryDateTime = logEntries.Any() ? DateTime.Parse(logEntries.First().EntryDateTime) : new DateTime();
+    var origFirstLoadedLogEntryDateTime = logEntries.Any() ? DateTime.Parse(logEntries.First().DateTime) : new DateTime();
     var logEntryStrArraySeparator = HttpUtility.UrlEncode(Constants.LogEntryStrArraySeparator);
     //const string logEntryStrArraySeparator = Constants.LogEntryStrArraySeparator;
     const string dbInfoBarId = Constants.DbInfoBarId;
@@ -110,7 +110,7 @@
     @{
         var prevLogEntryDateTime = DateTime.MinValue;
         var leCount = 0;
-        var lastLeNumb = 0;
+        ushort lastLeNumb = 0;
     }
     @if (logEntries.Any())
     {
@@ -123,22 +123,22 @@
             {
                 leInFocus = focusLineClass;
             }
-            var currentLogEntryDateTime = DateTime.Parse(l.EntryDateTime);
-            if (prevLogEntryDateTime.Day < currentLogEntryDateTime.Day)
+            var currentLogEntryDateTime = DateTime.Parse(l.DateTime);
+            if (prevLogEntryDateTime.Date < currentLogEntryDateTime.Date)
             {
-                <div class="@leDayDateClass">@l.EntryDateTime.Substring(0, 10)</div>
+                <div class="@leDayDateClass">@l.DateTime.Substring(0, 10)</div>
                 prevLogEntryDateTime = currentLogEntryDateTime;
             }
             var fmtLogEntryNumber = formatLogEntryNumber(l.EntryNumber);
             lastLeNumb = l.EntryNumber;
             <div class="@logEntryClass @leInFocus">
-                <div class="@leDateClass @lePartClass">@l.EntryDateTime.Substring(11)</div><div class="@leNumbClass @lePartClass">@fmtLogEntryNumber</div><div class="@leTextClass @lePartClass">@l.EntryText</div><div class="@hiddenScoreClass">@l.EntryScore</div>
+                <div class="@leDateClass @lePartClass">@l.DateTime.Substring(11)</div><div class="@leNumbClass @lePartClass">@fmtLogEntryNumber</div><div class="@leTextClass @lePartClass">@l.Text</div><div class="@hiddenScoreClass">@l.EpochMs</div>
             </div>
         }
     }
     @{
         var currentDateTime = DateTime.Now;
-        if (prevLogEntryDateTime.Day < currentDateTime.Day)
+        if (prevLogEntryDateTime.Date < currentDateTime.Date)
         {
             <div class="@leDayDateClass">@($"{DateTime.Now:MM/dd/yyyy}")</div>
             lastLeNumb = 0;

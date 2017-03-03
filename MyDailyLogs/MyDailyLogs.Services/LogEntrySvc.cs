@@ -156,7 +156,7 @@ namespace MyDailyLogs.Services
                 var currentEntryTimeStamp = currentTs.FromMillisecondsSinceEpochToCurrentDateTimeUtc().ToLocalTime();
 
                 // If this log entry is the first of a new day in the sequence, we reset the entry number
-                if (currentEntryTimeStamp.Day > prevEntryTimeStamp.Day) {
+                if (currentEntryTimeStamp.Date > prevEntryTimeStamp.Date) {
                     entryNumber = 1;
                     prevEntryTimeStamp = currentEntryTimeStamp;
                 }
@@ -165,10 +165,10 @@ namespace MyDailyLogs.Services
                 // -it it stored in Redis this way to satisfy the Redis Type Sorted Set requirement that any item in the set be distinct
                 var entryText = Encoding.UTF8.GetString(logEntries[i]).Substring(13);
 
-                vm.EntryDateTime = currentEntryTimeStamp.FormatForDisplay();
+                vm.DateTime = currentEntryTimeStamp.FormatForDisplay();
                 vm.EntryNumber = entryNumber;
-                vm.EntryText = entryText;
-                vm.EntryScore = currentTs;
+                vm.Text = entryText;
+                vm.EpochMs = currentTs;
 
                 logEntryVms.Add(vm);
             }
