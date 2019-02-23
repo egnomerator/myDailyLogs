@@ -40,3 +40,17 @@ C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\Servic
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.DataAccess.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.DataAccess.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Common.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Interfaces.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Redis.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Text.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Common.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Redis.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Debug\ServiceStack.Text.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Debug\MyDailyLogs.DataAccess.pdb

@@ -6,3 +6,7 @@ C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModel
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.pdb
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.dll
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Release\MyDailyLogs.ViewModels.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Release\MyDailyLogs.ViewModels.pdb

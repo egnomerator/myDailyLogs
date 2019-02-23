@@ -26,3 +26,17 @@ C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAcces
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.dll
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.DataAccess.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.DataAccess.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Common.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Interfaces.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Redis.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Text.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Common.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Redis.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\bin\Release\ServiceStack.Text.xml
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.csprojResolveAssemblyReference.cache
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.DataAccess\obj\Release\MyDailyLogs.DataAccess.pdb

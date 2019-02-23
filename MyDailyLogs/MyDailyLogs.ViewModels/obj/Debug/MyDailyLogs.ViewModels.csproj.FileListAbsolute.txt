@@ -12,3 +12,7 @@ C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDail
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.pdb
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\bin\Debug\MyDailyLogs.ViewModels.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.ViewModels\obj\Debug\MyDailyLogs.ViewModels.pdb

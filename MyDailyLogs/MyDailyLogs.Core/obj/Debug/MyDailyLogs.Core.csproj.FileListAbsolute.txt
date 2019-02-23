@@ -12,3 +12,7 @@ C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.pdb
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.dll
 C:\_Dan\gitrepos\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\bin\Debug\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\obj\Debug\MyDailyLogs.Core.pdb

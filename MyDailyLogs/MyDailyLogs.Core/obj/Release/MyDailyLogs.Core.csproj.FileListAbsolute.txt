@@ -6,3 +6,7 @@ C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\bin\Release\MyDailyLogs.Core.pdb
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.dll
 C:\_Dan\gitwork\myDailyLogs\master\myDailyLogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\bin\Release\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\bin\Release\MyDailyLogs.Core.pdb
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.dll
+D:\_Dan\gitwork\myDailyLogs\master\mydailylogs\MyDailyLogs\MyDailyLogs.Core\obj\Release\MyDailyLogs.Core.pdb
